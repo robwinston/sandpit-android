@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Sandpit</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_button_dispatcher">ButtonDispatcherActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_trace_base">TraceBaseActivity</string>
+</resources>
