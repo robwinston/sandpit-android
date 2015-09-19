@@ -28,6 +28,10 @@
             android:name="com.rtwsquared.android.util.activity.TraceBaseActivity"
             android:label="@string/title_activity_trace_base" >
         </activity>
+        <activity
+            android:name="com.rtwsquared.android.util.activity.DispatchBaseActivity"
+            android:label="@string/title_activity_dispatch_base" >
+        </activity>
     </application>
 
 </manifest>

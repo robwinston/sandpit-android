@@ -1,6 +1,5 @@
 package com.rtwsquared.android.util.activity;
 
-
 /**
  * Created by robw on 17/09/2015.
  * For passing data to be put in an intent ...
@@ -8,22 +7,22 @@ package com.rtwsquared.android.util.activity;
  * In any event it should be as general as what an intent will accept
  * ... but doing MVP just now
  */
-public class IntentData<K, D> {
+public class IntentData {
 
-    private final K key;
-    private final D data;
+    private final String key;
+    private final String data;
 
-    public IntentData(K key, D data)
+    public IntentData(String key, String data)
     {
         this.key = key;
         this.data = data;
     }
 
-    public K getKey() {
+    public String getKey() {
         return key;
     }
 
-    public D getData() {
+    public String getData() {
         return data;
     }
 }
