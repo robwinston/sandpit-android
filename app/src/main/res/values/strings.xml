@@ -9,5 +9,24 @@
     <string name="title_activity_dispatch_base">DispatchBaseActivity</string>
 
     <string name="dispatch_package_name_key">PackageName</string>
+    <string name="title_activity_parent">ParentActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_child1">ChildActivity1</string>
+
+
+    <string name="parentActivity_title">Parent Activity</string>
+    <string name="parentActivity_goto_child_button_title">Send data to Child Activity</string>
+    <string name="parentActivity_data_hint">Enter data for Child Activity</string>
+    <string name="parentActivity_data_key_1">ParentActivityData</string>
+    <string name="parentActivity_no_data_from_child">No data from child activity</string>
+
+    <string name="childActivity_title">Child Activity</string>
+    <string name="childActivity_button_title">Send data back to Parent Activity</string>
+    <string name="childActivity_data_hint">Enter data for Parent Activity</string>
+    <string name="childActivity_data_key_1">ChildActivityData</string>
+    <string name="childActivity_no_data_from_parent">No data from parent activity</string>
+
+
 
 </resources>

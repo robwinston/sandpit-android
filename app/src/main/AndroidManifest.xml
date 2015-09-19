@@ -32,6 +32,14 @@
             android:name="com.rtwsquared.android.util.activity.DispatchBaseActivity"
             android:label="@string/title_activity_dispatch_base" >
         </activity>
+        <activity
+            android:name=".activities.ParentActivity"
+            android:label="@string/title_activity_parent" >
+        </activity>
+        <activity
+            android:name=".activities.ChildActivity1"
+            android:label="@string/title_activity_child1" >
+        </activity>
     </application>
 
 </manifest>

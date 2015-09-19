@@ -75,7 +75,8 @@ public class BaseActivity extends Activity implements TraceManager {
     static List<TraceType> defaultTraceTypes = new ArrayList<TraceType>();
     static {
         defaultTraceTypes.add(TraceType.Log);
-        defaultTraceTypes.add(TraceType.Toast);    }
+        //defaultTraceTypes.add(TraceType.Toast);
+    }
 
     TraceManagerImpl traceManager;
     protected void setupTrace(String parentClass, List<TraceType> traceTypes) {

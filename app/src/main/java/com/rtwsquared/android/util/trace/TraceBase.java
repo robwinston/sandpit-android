@@ -11,17 +11,14 @@ import java.util.Locale;
  * Trace functionality common to various techniques
  */
 abstract class TraceBase {
+
     protected final Context context;
     protected final String parentClass;
-    // consider providing a way to set stack depth for flexibility?
-    private int stackDepth;
-
 
     public TraceBase(Context context, String parentClass)
     {
         this.context = context;
         this.parentClass = parentClass;
-        this.stackDepth = 4;
     }
 
     private final String timeFormat = "HH:mm:ss.SSS";
@@ -36,7 +33,12 @@ abstract class TraceBase {
         return String.format("%s: %s.%s()", getTime(), parentClass, callingMethod);
     }
 
+    // This value backs us through the call chain that gets us here
+    // So trace will show the method name we're trying to trace, instead of an intermediate method on its way here
+    // Currently the chain is SomeActivity.someMethod ->  BaseActivity.traceMe -> TraceManager.traceMe -> Tracer.traceMe -> getCallingMethod
+    // Hence the setting is 4
+    private static final int STACK_DEPTH = 4;
     protected String getCallingMethod() {
-        return new Throwable().fillInStackTrace().getStackTrace()[stackDepth].getMethodName();
+        return new Throwable().fillInStackTrace().getStackTrace()[STACK_DEPTH].getMethodName();
     }
 }
