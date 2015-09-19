@@ -80,7 +80,7 @@ But then, there's likely something far better out there - this is more of a pers
 A view-less Activity class with miscellaneous utility methods.  TraceBaseActivity extends this.
 
 * Includes a generic method to set a View element's (e.g. Button) click behaviour to dispatch to another activity.  
-* Includes an inner class which implements the Holder pattern to cache View elements in lieu of stashing them in instance variables. Granted this is overkill for items accessed only once in the onCreate() method (but then storing them in instance variables has no benefit either), but it demonstrates the principle.  Nonetheless, for anyone accessing elements repeatedly (e.g. RandomMountains) it's a performant alternative to instance variables.
+* Includes an inner class which implements the Holder pattern to cache View elements in lieu of stashing them in instance variables. Granted this is overkill for items accessed only once in the onCreate() method (but then storing them in instance variables has no benefit either), but it demonstrates the principle.  Nonetheless, for anyone accessing elements repeatedly it's a performant alternative to instance variables.
 * This feature is implemented by overriding the `findViewById(int id)` method, so it is transparent to the consumer.  
 
 
