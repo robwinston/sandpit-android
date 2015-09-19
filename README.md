@@ -27,11 +27,11 @@ This facility relies on a certain amount of configuration by convention -
 
 * The `MainActivity` launcher: 
   - Manually builds the ActivityGroupCollection in `getActivityGroups()` - opportunity here to be more dynamic, e.g. read the AndroidManifest.
-  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct dipatcher buttons & text for each ActivityGroup. Each of these invokes a `DispatchButtonsActivity` with package name passed in the intent.
+  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct dipatcher buttons & text for each ActivityGroup. Each of these invokes a `ButtonDispatcherActivity` (with package name passed in the intent).
   - This method uses another helper class `IntentData` to send String-based key/value pairs to the receiving activity.  Presently, all this used for is to send the package name - but it's a placeholder for doing more - e.g. extended to support the various data types passable through intents.
-  - Presently, the reciever for each button is a `DispatchButtonsActivity`, but it could be anything which understand the convention.
+  - Presently, the reciever for each button is a `ButtonDispatcherActivity`, but it could be anything which understand the convention.
 
-* The  `DispatchButtonsActivity` launcher:
+* The  `ButtonDispatcherActivity` launcher:
   - Gets the package name passed to it.
   - Uses the ClassFinder utility class to find all of the classes in this package whose names end with Activity.
   - Thanks to the following for providing almost all of of what it took to do this  - 
@@ -39,7 +39,7 @@ This facility relies on a certain amount of configuration by convention -
     - [How to get all classes names in a package?](http://stackoverflow.com/questions/15519626/how-to-get-all-classes-names-in-a-package)
   - Uses code similar to that in the MainActivity class (clearly a refactoring opportunity!) to build an entry for each Activity.
 
-* MainActivity & DispatchButtonsActivity extend DispatchBaseActivity which provides common functionality.
+* MainActivity & ButtonDispatcherActivity extend DispatchBaseActivity which provides common functionality.
 * As suggested, it should be possible to develop other "Dispatch" Activities which use different navigation (e.g. menus), but re-use the core capability.  This would likely surface further refactoring  opportunities.
 
 ## Tracing
@@ -51,7 +51,7 @@ Manage a collection of one or more Tracers to support sending trace entries to m
 ### TracerBase
 Core functionality for tracing - format mssage with time, parent class, calling method. 
 
-Note: "stack depth" is hard coded, so it can will provide misleading info used in a different context. Where this is done is commented in the code and iseasily modified.  May in future make this configurable.
+Note: "stack depth" is hard coded, so it will provide misleading info if used in a different context. Where this is done is commented in the code and is easily modified.  May in future make this genuinely configurable.
 
 ### ToastTracer
 Issue trace messages using Toast
@@ -86,9 +86,9 @@ A view-less Activity class with miscellaneous utility methods.  TraceBaseActivit
 
 ## Activities
 
-The other activities are exploraions of various capabilites in the SDK.
+The other activities are explorations of various capabilites in the SDK.
 ### ParentActivity / ChildActivity1
 
-* Simple impelemtation of exchanging data between Activities.  It uses EditText/TextView in both to facilitate the exchange (and uses the TraceActivity as well to show what's coming and going). 
+* Simple impelemtation of exchanging data between Activities.  It uses EditText/TextView in both to demonstrate the exchange (and uses the TraceActivity as well to show what's coming and going). 
 * ChildActivity1 doesn't appear on the launcher panel because its classname doesn't end with "Activity".
 
