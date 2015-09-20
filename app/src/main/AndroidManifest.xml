@@ -44,6 +44,10 @@
             android:name="com.rtwsquared.android.util.activity.TableDispatcherActivity"
             android:label="@string/title_activity_table_dispatcher" >
         </activity>
+        <activity
+            android:name=".media.SoundActivity"
+            android:label="@string/title_activity_sound" >
+        </activity>
     </application>
 
 </manifest>

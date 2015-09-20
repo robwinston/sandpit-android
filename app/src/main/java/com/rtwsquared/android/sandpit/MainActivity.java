@@ -88,6 +88,7 @@ public class MainActivity extends DispatchBaseActivity {
         activityGroupCollection.addActivityGroup(new ActivityGroup("Activities", "Data exchange, etc.", packageRoot + "activities"));
         activityGroupCollection.addActivityGroup(new ActivityGroup("Views", "ListViews, etc.", packageRoot + "views"));
         activityGroupCollection.addActivityGroup(new ActivityGroup("Input Controls", "Radio Buttons, Checkboxes, etc.", packageRoot + "controls"));
+        activityGroupCollection.addActivityGroup(new ActivityGroup("Media", "Media Player, etc.", packageRoot + "media"));
 
         return activityGroupCollection;
     }

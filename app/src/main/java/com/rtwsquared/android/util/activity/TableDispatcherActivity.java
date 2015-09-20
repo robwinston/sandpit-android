@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.rtwsquared.android.sandpit.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TableDispatcherActivity extends DispatchBaseActivity {
@@ -27,6 +28,18 @@ public class TableDispatcherActivity extends DispatchBaseActivity {
 
             String packageName = getDispatchPackageName();
             List<Class<?>> classes = getClasses(packageName);
+
+            /*
+            // TODO remove this once testing is complete
+            // Duplicate entries to test table mechanics
+            List<Class<?>> classes = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {
+                for (Class aClass : aClasses) {
+                    classes.add(aClass);
+                }
+            }
+            */
+
 
             int activities = 0;
             for (Class aClass : classes) {

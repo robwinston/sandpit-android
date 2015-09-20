@@ -27,6 +27,7 @@
     <string name="childActivity_data_key_1">ChildActivityData</string>
     <string name="childActivity_no_data_from_parent">No data from parent activity</string>
     <string name="title_activity_table_dispatcher">TableDispatcherActivity</string>
+    <string name="title_activity_sound">SoundActivity</string>
 
 
 
