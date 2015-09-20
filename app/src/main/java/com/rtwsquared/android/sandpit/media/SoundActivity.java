@@ -12,18 +12,19 @@ import com.rtwsquared.android.util.activity.TraceBaseActivity;
 
 public class SoundActivity extends TraceBaseActivity {
 
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound);
         setupTrace(SoundActivity.class.getSimpleName());
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.brown_eyed_girl);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.brown_eyed_girl);
 
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                traceMe("Player complete");
+                traceMe("Player complete: " + formatDuration(mediaPlayer.getDuration()));
                 setButtonsState(mp);
             }
         });
@@ -41,8 +42,10 @@ public class SoundActivity extends TraceBaseActivity {
         findViewById(R.id.sound_play_button_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer.isPlaying())
+                if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
+                    traceMe("Player paused: " + formatDuration(mediaPlayer.getCurrentPosition()));
+                }
                 else
                     mediaPlayer.start();
                 setButtonsState(mediaPlayer);
@@ -66,9 +69,19 @@ public class SoundActivity extends TraceBaseActivity {
                 setButtonsState(mediaPlayer);
             }
         });
+    }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null)
+        {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+            mediaPlayer = null;
+        }
     }
 
     // These methods assume they'll be working with an ImageButton!
@@ -94,5 +107,14 @@ public class SoundActivity extends TraceBaseActivity {
             stopButton.setEnabled(false);
             reloadButton.setEnabled(false);
         }
+    }
+
+
+    private String formatDuration(int duration) {
+        int milliseconds = duration%1000;
+        int seconds = (duration/1000)%60;
+        int minutes = ((duration/1000)%60)/60;
+
+        return String.format("%02d:%02d:%04d (%d)", minutes, seconds, milliseconds, duration);
     }
 }

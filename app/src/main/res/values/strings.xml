@@ -3,15 +3,17 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_button_dispatcher">ButtonDispatcherActivity</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_trace_base">TraceBaseActivity</string>
     <string name="title_activity_dispatch_base">DispatchBaseActivity</string>
+    <string name="title_activity_button_dispatcher">ButtonDispatcherActivity</string>
+    <string name="title_activity_table_dispatcher">TableDispatcherActivity</string>
 
     <string name="dispatch_package_name_key">PackageName</string>
-    <string name="title_activity_parent">ParentActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sound">SoundActivity</string>
+    <string name="title_activity_progress_bar">ProgressBarActivity</string>
+    <string name="title_activity_parent">ParentActivity</string>
     <string name="title_activity_child1">ChildActivity1</string>
 
 
@@ -26,9 +28,11 @@
     <string name="childActivity_data_hint">Enter data for Parent Activity</string>
     <string name="childActivity_data_key_1">ChildActivityData</string>
     <string name="childActivity_no_data_from_parent">No data from parent activity</string>
-    <string name="title_activity_table_dispatcher">TableDispatcherActivity</string>
-    <string name="title_activity_sound">SoundActivity</string>
 
+    <string name="progress_text_header">Simulated File Download</string>
+    <string name="progress_as_dialog_button_text">As Dialog</string>
+    <string name="progress_as_bar_button_text">As Bar</string>
+    <string name="title_activity_progress_dialog">ProgressDialogActivity</string>
 
-
+    <string name="hello_world">Hello world!</string>
 </resources>

@@ -48,6 +48,14 @@
             android:name=".media.SoundActivity"
             android:label="@string/title_activity_sound" >
         </activity>
+        <activity
+            android:name=".controls.ProgressBarActivity"
+            android:label="@string/title_activity_progress_bar" >
+        </activity>
+        <activity
+            android:name=".controls.ProgressDialogActivity"
+            android:label="@string/title_activity_progress_dialog" >
+        </activity>
     </application>
 
 </manifest>
