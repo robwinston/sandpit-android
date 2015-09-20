@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.rtwsquared.android.sandpit.R;
+import com.rtwsquared.android.util.misc.ClassFinder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DispatchBaseActivity extends TraceBaseActivity {
@@ -66,5 +70,18 @@ public class DispatchBaseActivity extends TraceBaseActivity {
         });
     }
 
+    protected List<Class<?>> getClasses(String packageName) {
+        return ClassFinder.getClassesOfPackage(packageName, getPackageCodePath());
+    }
+
+
+    protected String getDispatchPackageName() {
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null && extras.containsKey(getString(R.string.dispatch_package_name_key)))
+            return extras.getString(getString(R.string.dispatch_package_name_key));
+
+        return "";
+    }
 
 }

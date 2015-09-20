@@ -1,61 +1,63 @@
 package com.rtwsquared.android.util.misc;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
 import dalvik.system.DexFile;
 
 /**
- * Created by sp00m on 20/03/2013.
- *
+ * Original code created by sp00m on 20/03/2013.
+ * Adapted to this use by rob on 15/09/2015
  */
 public class ClassFinder {
 
 
-    //TODO refactor common logic ... cries out for a functional approach!
-    public static ArrayList<Class<?>>  getClassesOfPackage(String packageName, String packageCodePath)   {
+    //TODO refactor ... cries out for a functional approach!
+    public static List<Class<?>>  getClassesOfPackage(String packageName, String packageCodePath)   {
         ArrayList<Class<?>>  classes = new ArrayList();
-        try {
-            DexFile df = new DexFile(packageCodePath);
-            for (Enumeration<String> iter = df.entries(); iter.hasMoreElements(); ) {
-                String className = iter.nextElement();
-                // This relies on the convention that activity class names and with Activity
-                // Could look at base type instead ...
+            Enumeration<String> entries = getClassNames(packageCodePath);
+            while (entries != null && entries.hasMoreElements()) {
+                String className = entries.nextElement();
+                // This relies on the convention that activity class names end with Activity
+                // Could look at base type instead ... but this provides an easy way to exclude activities
+                // which aren't "launchable"
                 if (className.contains(packageName)  && className.endsWith("Activity")) {
                     try {
                         classes.add(Class.forName(className));
                     } catch (ClassNotFoundException ignore) {}
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return classes;
     }
 
-
-
-    // this does seem to work - so method above uses technique to behave like the method below ...
+    // this does seem to work - so method above uses technique, to behave like the method further below ...
     // http://stackoverflow.com/questions/15446036/find-all-classes-in-a-package-in-android
     public static String[] getClassnamesOfPackage(String packageName, String packageCodePath) {
         ArrayList<String> classes = new ArrayList<String>();
-        try {
-            DexFile df = new DexFile(packageCodePath);
-            for (Enumeration<String> iter = df.entries(); iter.hasMoreElements(); ) {
-                String className = iter.nextElement();
+        Enumeration<String> entries = getClassNames(packageCodePath);
+        while (entries != null && entries.hasMoreElements()) {
+                String className = entries.nextElement();
                 if (className.contains(packageName)) {
                     classes.add(className.substring(className.lastIndexOf(".") + 1, className.length()));
                 }
             }
+        return classes.toArray(new String[classes.size()]);
+    }
+
+
+    private static Enumeration<String> getClassNames(String packageCodePath)  {
+        try {
+            DexFile df = new DexFile(packageCodePath);
+            return df.entries();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return classes.toArray(new String[classes.size()]);
+        // Minimal SDK level doesn't allow this ...
+        //Collections.<String>emptyEnumeration();
+        return null;
     }
 
 

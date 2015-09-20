@@ -3,25 +3,25 @@ package com.rtwsquared.android.util.activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.rtwsquared.android.sandpit.R;
 
 import java.util.List;
 
-public class ButtonDispatcherActivity extends DispatchBaseActivity {
+public class TableDispatcherActivity extends DispatchBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_button_dispatcher);
-        setupTrace(ButtonDispatcherActivity.class.getSimpleName());
+        setContentView(R.layout.activity_table_dispatcher);
 
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.dispatch_layout);
+        final TableLayout tableLayout = (TableLayout) findViewById(R.id.dispatch_layout);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams trlp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 
         try {
 
@@ -30,12 +30,10 @@ public class ButtonDispatcherActivity extends DispatchBaseActivity {
 
             int activities = 0;
             for (Class aClass : classes) {
-                //for (String aClass : classes) {
-                // Create LinearLayout
-                LinearLayout ll = new LinearLayout(this);
-                ll.setOrientation(LinearLayout.HORIZONTAL);
-                ll.setPadding(5, 10, 5, 10);
-
+                TableRow tableRow = new TableRow(this);
+                tableRow.setLayoutParams(trlp);
+                //tableRow.setOrientation(LinearLayout.HORIZONTAL);
+                //tableRow.setPadding(5, 10, 5, 10);
 
                 // Create Launcher Button
                 final Button button = new Button(this);
@@ -43,20 +41,18 @@ public class ButtonDispatcherActivity extends DispatchBaseActivity {
                 // TODO decide whether or not an id is really needed
                 button.setId(getViewId());
                 button.setText("Launch");
-                // set the layoutParams on the button
-                button.setLayoutParams(params);
+                tableRow.addView(button);
 
                 // Set click listener for button
                 setNewActivityOnClickListener(button, classes.get(activities));
 
-                ll.addView(button);
 
                 // Create Launcher text using Activity class name
                 TextView name1 = new TextView(this);
                 name1.setText(String.format("%s", aClass.getSimpleName()));
-                ll.addView(name1);
+                tableRow.addView(name1);
 
-                lm.addView(ll);
+                tableLayout.addView(tableRow);
                 activities++;
             }
             String activityString = activities == 1 ? "activity" : "activities";
@@ -65,5 +61,7 @@ public class ButtonDispatcherActivity extends DispatchBaseActivity {
         } catch (Exception e) {
             ((TextView) findViewById(R.id.dispatch_debug_text)).setText(e.getMessage());
         }
+
     }
+
 }

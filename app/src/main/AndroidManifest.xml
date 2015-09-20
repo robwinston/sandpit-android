@@ -40,6 +40,10 @@
             android:name=".activities.ChildActivity1"
             android:label="@string/title_activity_child1" >
         </activity>
+        <activity
+            android:name="com.rtwsquared.android.util.activity.TableDispatcherActivity"
+            android:label="@string/title_activity_table_dispatcher" >
+        </activity>
     </application>
 
 </manifest>

@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import com.rtwsquared.android.util.activity.ActivityGroup;
 import com.rtwsquared.android.util.activity.ActivityGroupCollection;
-import com.rtwsquared.android.util.activity.ButtonDispatcherActivity;
 import com.rtwsquared.android.util.activity.DispatchBaseActivity;
 import com.rtwsquared.android.util.activity.IntentData;
+import com.rtwsquared.android.util.activity.TableDispatcherActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class MainActivity extends DispatchBaseActivity {
 
             List<IntentData> dataToSend = new ArrayList<>();
             dataToSend.add(new IntentData(getString(R.string.dispatch_package_name_key), activityGroup.getPackageName()));
-            setNewActivityOnClickListener(button, ButtonDispatcherActivity.class, dataToSend);
+            setNewActivityOnClickListener(button, TableDispatcherActivity.class, dataToSend);
             grandchildLayout1.addView(button);
 
             TextView name1 = new TextView(this);
