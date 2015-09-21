@@ -1,6 +1,7 @@
 package com.rtwsquared.android.util.trace;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,35 +35,18 @@ public class TraceManagerImpl implements TraceManager {
     public void traceMe(String message) {
         if (isTraceEnabled()) {
             for (Tracer tracer : tracers) {
-                tracer.traceMe(message);
+                if (tracer != null)
+                    tracer.traceMe(message);
             }
         }
     }
 
-    /*
-    The idea was to use Reflection to instantiate ...
-
-    private static final HashMap<TraceType, Class> traceClassesForType
-            = new HashMap<>();
-
-    static {
-        traceClassesForType.put(TraceType.Log, LogTracer.class);
-        traceClassesForType.put(TraceType.Log, ToastTracer.class);
-    }
-    */
     private void populateTracers(List<TraceType> traceTypes, Context applicationContext, String parentClass) {
         for (TraceType traceType : traceTypes) {
-            //TODO use reflection to invoke constructor, so we can add more tracers without having to come here ...
-            switch (traceType) {
-                case Toast:
-                    tracers.add(new ToastTracer(applicationContext, parentClass));
-                    break;
-                case Log:
-                    tracers.add(new LogTracer(applicationContext, parentClass));
-                    break;
-            }
+            Tracer tracer = traceType.getTracer(applicationContext, parentClass);
+            Log.d("MyTrace", "TraceManagerImpl.populateTracers: " + (tracer == null ? "Null tracer!" : tracer.getClass().getCanonicalName()));
+            tracers.add(tracer);
         }
     }
-
 }
 
