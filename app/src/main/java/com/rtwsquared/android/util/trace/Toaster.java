@@ -8,14 +8,14 @@ import android.widget.Toast;
  */
 public interface Toaster {
     /**
-     * @param toast - Toast to be added to Toaster
+     * @param toast - TOAST to be added to Toaster
      * @return total number of elements added over lifetime (not current depth - same as getTotalRequests())
      */
     int add(Toast toast);
 
     /**
-     * Replaces the last Toast added with this one - handy when tracing inside a loop or event handler
-     * @param toast - Toast to be added to Toaster
+     * Replaces the last TOAST added with this one - handy when tracing inside a loop or event handler
+     * @param toast - TOAST to be added to Toaster
      * @return total number of elements added over lifetime (not current depth - same as getTotalRequests())
      */
     int replace(Toast toast);
@@ -43,7 +43,7 @@ public interface Toaster {
 
 
     /**
-     * @param depth - set max cache depth, older Toast will be cancelled & removed
+     * @param depth - set max cache depth, older TOAST will be cancelled & removed
      */
     void setDepth(int depth);
 

@@ -3,9 +3,12 @@ package com.rtwsquared.android.util.trace;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by robw on 15/09/2015.
- * Wrapper class for Toast tracing facility
+ * Wrapper class for TOAST tracing facility
  */
 public class ToastTracer extends TraceBase implements Tracer {
 
@@ -28,6 +31,11 @@ public class ToastTracer extends TraceBase implements Tracer {
         else
             toast.setText(String.format("%s (%d) ==> %s", baseMessage, requests, message));
         toast.show();
+    }
+
+    @Override
+    public List<TraceType> getTraceTypes() {
+        return Collections.singletonList(TraceType.TOAST);
     }
 
     private Toast getToast() {

@@ -2,13 +2,18 @@ package com.rtwsquared.android.util.trace;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by robw on 15/09/2015.
- * Wrapper class for Toast tracing facility
+ * Wrapper class for TOAST tracing facility
  */
 public class LogTracer extends TraceBase implements Tracer {
+
+    public static final String TAG = "Tracer";
 
     public LogTracer(Context context, String parentClass)
     {
@@ -17,12 +22,16 @@ public class LogTracer extends TraceBase implements Tracer {
 
     public void traceMe(String message)
     {
-        final String tag = "Tracer";
         String callingMethod = getCallingMethod();
         String baseMessage = getBaseMessage(callingMethod);
         if (message == null || message.equals(""))
-            Log.d(tag, String.format("%s", baseMessage));
+            Log.d(TAG, String.format("%s", baseMessage));
         else
-            Log.d(tag, String.format("%s ==> %s", baseMessage, message));
+            Log.d(TAG, String.format("%s ==> %s", baseMessage, message));
+    }
+
+    @Override
+    public List<TraceType> getTraceTypes() {
+        return Collections.singletonList(TraceType.LOG);
     }
 }

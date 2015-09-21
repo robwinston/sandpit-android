@@ -9,8 +9,8 @@ import java.lang.reflect.Constructor;
  * Used to specify a particular tracing implementation
  */
 public enum TraceType {
-    Toast("com.rtwsquared.android.util.trace.ToastTracer"),
-    Log("com.rtwsquared.android.util.trace.LogTracer");
+    TOAST("com.rtwsquared.android.util.trace.ToastTracer"),
+    LOG("com.rtwsquared.android.util.trace.LogTracer");
 
     TraceType(String classname) {
         try {

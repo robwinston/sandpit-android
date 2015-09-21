@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.rtwsquared.android.sandpit.R;
 import com.rtwsquared.android.util.trace.TraceManager;
 import com.rtwsquared.android.util.trace.TraceManagerImpl;
 import com.rtwsquared.android.util.trace.TraceType;
@@ -72,10 +71,10 @@ public class BaseActivity extends Activity implements TraceManager {
 
 
     // Tracing section
-    static List<TraceType> defaultTraceTypes = new ArrayList<TraceType>();
+    static final List<TraceType> DEFAULT_TRACE_TYPES = new ArrayList<TraceType>();
     static {
-        defaultTraceTypes.add(TraceType.Log);
-        //defaultTraceTypes.add(TraceType.Toast);
+        DEFAULT_TRACE_TYPES.add(TraceType.LOG);
+        DEFAULT_TRACE_TYPES.add(TraceType.TOAST);
     }
 
     TraceManagerImpl traceManager;
@@ -84,13 +83,25 @@ public class BaseActivity extends Activity implements TraceManager {
     }
 
     protected void setupTrace(String parentClass) {
-        traceManager = new TraceManagerImpl(getApplicationContext(), parentClass, defaultTraceTypes);
+        traceManager = new TraceManagerImpl(getApplicationContext(), parentClass, DEFAULT_TRACE_TYPES);
     }
 
     @Override
     public void traceMe(String message) {
         if (traceManager != null)
             traceManager.traceMe(message);
+    }
+
+    @Override
+    public List<TraceType> getTraceTypes() {
+        return (traceManager == null) ? null : traceManager.getTraceTypes();
+    }
+
+
+    @Override
+    public void traceMe(TraceType traceType, String message) {
+        if (traceManager != null)
+            traceManager.traceMe(traceType, message);
     }
 
     @Override

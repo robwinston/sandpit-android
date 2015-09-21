@@ -11,7 +11,6 @@ import java.util.Locale;
  * Trace functionality common to various techniques
  */
 abstract class TraceBase {
-
     protected final Context context;
     protected final String parentClass;
 
@@ -19,6 +18,16 @@ abstract class TraceBase {
     {
         this.context = context;
         this.parentClass = parentClass;
+        setTraceEnabled(true);
+    }
+
+    private boolean traceEnabled;
+    public boolean isTraceEnabled() {
+        return traceEnabled;
+    }
+
+    public void setTraceEnabled(boolean traceEnabled) {
+        this.traceEnabled = traceEnabled;
     }
 
     private final String timeFormat = "HH:mm:ss.SSS";
