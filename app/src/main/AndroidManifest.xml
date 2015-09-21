@@ -56,6 +56,10 @@
             android:name=".controls.ProgressDialogActivity"
             android:label="@string/title_activity_progress_dialog" >
         </activity>
+        <activity
+            android:name="com.rtwsquared.android.util.activity.JarDispatcherActivity"
+            android:label="@string/title_activity_jar_dispatcher" >
+        </activity>
     </application>
 
 </manifest>

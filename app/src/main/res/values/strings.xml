@@ -10,6 +10,7 @@
     <string name="title_activity_table_dispatcher">TableDispatcherActivity</string>
 
     <string name="dispatch_package_name_key">PackageName</string>
+    <string name="dispatch_package_root">"com.rtwsquared.android.sandpit."</string>
 
     <string name="title_activity_sound">SoundActivity</string>
     <string name="title_activity_progress_bar">ProgressBarActivity</string>
@@ -37,4 +38,7 @@
     <string name="progress_bar_stop_button_text">Stop</string>
     <string name="progress_bar_download_button_text">Download</string>
     <string name="progress_bar_start_button_text">Start</string>
+    <string name="title_activity_jar_dispatcher">JarDispatcherActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

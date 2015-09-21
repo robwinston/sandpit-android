@@ -2,14 +2,12 @@ package com.rtwsquared.android.util.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.rtwsquared.android.sandpit.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TableDispatcherActivity extends DispatchBaseActivity {

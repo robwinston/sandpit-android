@@ -7,7 +7,6 @@ import android.view.View;
 import com.rtwsquared.android.sandpit.R;
 import com.rtwsquared.android.util.misc.ClassFinder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DispatchBaseActivity extends TraceBaseActivity {

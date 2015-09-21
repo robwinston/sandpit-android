@@ -17,7 +17,7 @@ import java.util.List;
 public class TraceManagerImpl implements TraceManager {
 
     private final List<Tracer> tracers;
-    private final HashMap<TraceType, ArrayList<Tracer>> tracersByType;
+    private final HashMap<TraceType, List<Tracer>> tracersByType;
     private final List<TraceType> traceTypes;
 
     public TraceManagerImpl(Context applicationContext, String parentClass, List<TraceType> traceTypes) {
@@ -69,7 +69,7 @@ public class TraceManagerImpl implements TraceManager {
 
 
     private List<Tracer> populateTracers(List<TraceType> traceTypes, Context applicationContext, String parentClass) {
-        ArrayList<Tracer> theTracers = new ArrayList<>();
+        List<Tracer> theTracers = new ArrayList<>();
         for (TraceType traceType : traceTypes) {
             Tracer tracer = traceType.getTracer(applicationContext, parentClass);
             Log.d("MyTrace", "TraceManagerImpl.populateTracers: " + (tracer == null ? "Null tracer!" : tracer.getClass().getCanonicalName()));
@@ -79,9 +79,9 @@ public class TraceManagerImpl implements TraceManager {
     }
 
 
-    private HashMap<TraceType, ArrayList<Tracer>> populateTracersByType(List<Tracer> tracers) {
+    private HashMap<TraceType, List<Tracer>> populateTracersByType(List<Tracer> tracers) {
 
-        HashMap<TraceType, ArrayList<Tracer>> theTracersByType = new HashMap<>();
+        HashMap<TraceType, List<Tracer>> theTracersByType = new HashMap<>();
         for (TraceType tt : Arrays.asList(TraceType.values())) {
             theTracersByType.put(tt, new ArrayList<Tracer>());
         }

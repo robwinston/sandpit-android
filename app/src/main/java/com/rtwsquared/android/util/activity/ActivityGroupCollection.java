@@ -3,6 +3,7 @@ package com.rtwsquared.android.util.activity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by robw on 17/09/2015.
@@ -11,7 +12,7 @@ import java.util.Iterator;
 public class ActivityGroupCollection  implements Iterable<ActivityGroup> {
 
 
-    private ArrayList<ActivityGroup> activityGroups;
+    private List<ActivityGroup> activityGroups;
 
     public ActivityGroupCollection() {
         activityGroups = new ArrayList<>();
