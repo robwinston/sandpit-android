@@ -14,42 +14,43 @@ public class TraceBaseActivity extends BaseActivity {
 
     @Override
     protected void onStart() {
-        traceMe("");
+        traceCacheStats();
+        //traceMe("");
         super.onStart();
     }
 
     @Override
     protected void onRestart() {
-        // We have to do this dance every time (instead of in a convenience method) to preserve call depth
-        traceMe("");
+        //traceCacheStats();
+        //traceMe("");
         super.onRestart();
     }
 
     @Override
     protected void onResume() {
-        // We have to do this dance every time (instead of in a convenience method) to preserve call depth
-        traceMe("");
+        //traceCacheStats();
+        //traceMe("");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        // We have to do this dance every time (instead of in a convenience method) to preserve call depth
-        traceMe("");
+        //traceCacheStats();
+        //traceMe("");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        // We have to do this dance every time (instead of in a convenience method) to preserve call depth
-        traceMe("");
+        //traceCacheStats();
+        //traceMe("");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        // We have to do this dance every time (instead of in a convenience method) to preserve call depth
-        traceMe("");
+        traceCacheStats();
+        //traceMe("");
         super.onDestroy();
     }
 }

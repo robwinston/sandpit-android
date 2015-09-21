@@ -22,6 +22,11 @@ public class BaseActivity extends Activity implements TraceManager {
     }
 
 
+    @Override
+    public View findViewById(int id) {
+        return holder.findView(id);
+    }
+
     // View element caching section
     protected void traceCacheStats()
     {
