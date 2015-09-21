@@ -17,25 +17,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/progress_bar_header_id"
+        android:orientation="horizontal"
         android:layout_marginTop="25dp"
         >
 
         <Button
-            android:id="@+id/progress_bar_button_id"
+            android:id="@+id/progress_bar_download_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/progress_as_bar_button_text"
+            android:text="@string/progress_bar_download_button_text"
+            />
+        <Button
+            android:id="@+id/progress_bar_start_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progress_bar_start_button_text"
+            />
+        <Button
+            android:id="@+id/progress_bar_stop_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progress_bar_stop_button_text"
             />
 
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progress_bar_id"
+        android:id="@+id/progress_bar_progressBar1_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/progress_button_layout"
         android:max="100"
         android:layout_marginTop="25dp"
         />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_progressBar2_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar_progressBar1_id"
+        android:max="100"
+        android:layout_marginTop="25dp"
+        />
+
+    <TextView
+        android:id="@+id/progress_bar_result_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/progress_text_result"/>
+
+    <ImageView
+        android:id="@+id/progress_bar_image_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

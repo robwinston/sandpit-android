@@ -1,21 +1,11 @@
 package com.rtwsquared.android.sandpit.controls;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,8 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rtwsquared.android.sandpit.R;
+import com.rtwsquared.android.util.activity.TraceBaseActivity;
 
-public class MainActivity extends Activity implements OnClickListener{
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class ProgressBarActivity extends TraceBaseActivity implements OnClickListener{
 
     private ProgressBar progressBar1;
     private ProgressBar progressBar2;
@@ -42,18 +41,18 @@ public class MainActivity extends Activity implements OnClickListener{
         ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
         directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
 
-        progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+        progressBar1 = (ProgressBar) findViewById(R.id.progress_bar_progressBar1_id);
         progressBar1.setVisibility(View.GONE);
-        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+        progressBar2 = (ProgressBar) findViewById(R.id.progress_bar_progressBar2_id);
         progressBar2.setVisibility(View.GONE);
-        finished = (TextView) findViewById(R.id.textView1);
+        finished = (TextView) findViewById(R.id.progress_bar_result_id);
         finished.setVisibility(View.GONE);
 
-        Button start = (Button) findViewById(R.id.start);
+        Button start = (Button) findViewById(R.id.progress_bar_start_button_id);
         start.setOnClickListener(this);
-        Button stop = (Button) findViewById(R.id.stop);
+        Button stop = (Button) findViewById(R.id.progress_bar_stop_button_id);
         stop.setOnClickListener(this);
-        Button download = (Button) findViewById(R.id.download);
+        Button download = (Button) findViewById(R.id.progress_bar_download_button_id);
         download.setOnClickListener(this);
 
     }
@@ -61,15 +60,15 @@ public class MainActivity extends Activity implements OnClickListener{
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.start:
+            case R.id.progress_bar_start_button_id:
                 progressBar1.setVisibility(View.VISIBLE);
                 break;
 
-            case R.id.stop:
+            case R.id.progress_bar_stop_button_id:
                 progressBar1.setVisibility(View.GONE);
                 break;
 
-            case R.id.download:
+            case R.id.progress_bar_download_button_id:
                 String url = "http://upload.wikimedia.org/wikipedia/commons/0/05/Sna_large.png";
                 grabURL(url);
                 break;
@@ -147,15 +146,9 @@ public class MainActivity extends Activity implements OnClickListener{
             finished.setVisibility(View.VISIBLE);
             finished.setText("Finished downloading...");
             File myFile = new File(directory , filename);
-            ImageView myImage = (ImageView) findViewById(R.id.imageView1);
+            ImageView myImage = (ImageView) findViewById(R.id.progress_bar_image_id);
             myImage.setImageBitmap(BitmapFactory.decodeFile(myFile.getAbsolutePath()));
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
     }
 }

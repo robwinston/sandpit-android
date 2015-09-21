@@ -13,6 +13,7 @@
 
     <string name="title_activity_sound">SoundActivity</string>
     <string name="title_activity_progress_bar">ProgressBarActivity</string>
+    <string name="title_activity_progress_dialog">ProgressDialogActivity</string>
     <string name="title_activity_parent">ParentActivity</string>
     <string name="title_activity_child1">ChildActivity1</string>
 
@@ -30,9 +31,10 @@
     <string name="childActivity_no_data_from_parent">No data from parent activity</string>
 
     <string name="progress_text_header">Simulated File Download</string>
+    <string name="progress_text_result">Simulated Result Message</string>
     <string name="progress_as_dialog_button_text">As Dialog</string>
-    <string name="progress_as_bar_button_text">As Bar</string>
-    <string name="title_activity_progress_dialog">ProgressDialogActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="progress_bar_stop_button_text">Stop</string>
+    <string name="progress_bar_download_button_text">Download</string>
+    <string name="progress_bar_start_button_text">Start</string>
 </resources>
