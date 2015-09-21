@@ -36,7 +36,7 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_progress_bar);
 
         ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
         directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);

@@ -9,9 +9,7 @@ import android.widget.TextView;
 import com.rtwsquared.android.sandpit.R;
 
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,22 +26,17 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
         setContentView(R.layout.activity_jar_dispatcher);
         setupTrace(JarDispatcherActivity.class.getSimpleName());
 
-        LinearLayout ll = (LinearLayout) findViewById(R.id.main_parent_layout);
-        int itsId = ll == null ? 0 : ll.getId();
-        traceMe("Got parent layout: " + itsId);
-        addDispatcherLayout(ll);
+        addDispatcherLayout((LinearLayout) findViewById(R.id.jar_dispatch_parent_layout));
     }
 
     private void addDispatcherLayout(LinearLayout parentLayout) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        ActivityGroupCollection activityGroupCollection = getActivityGroups();
-        ((TextView) findViewById(R.id.main_debug_text)).setText(activityGroupCollection.size() + " ActivityGroups");
+        ActivityGroupCollection activityGroupCollection = getActivityGroupsFromXml(R.raw.activity_group_config);
+        ((TextView) findViewById(R.id.jar_dispatch_debug_text)).setText(activityGroupCollection.size() + " ActivityGroups");
 
         for (ActivityGroup activityGroup : activityGroupCollection) {
-
-            //getTracer().traceMe("Adding: " + activityGroup.getName());
 
             LinearLayout childLayout = new LinearLayout(this);
             childLayout.setOrientation(LinearLayout.VERTICAL);
@@ -52,11 +45,8 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
             LinearLayout grandchildLayout1 = new LinearLayout(this);
             grandchildLayout1.setOrientation(LinearLayout.HORIZONTAL);
 
-            // Create Launcher Button
             final Button button = new Button(this);
-            // TODO decide whether or not an id is really needed
-            button.setId(getViewId());
-            button.setText("Go To");
+            button.setText(getString(R.string.dispatch_goto_group_button_text));
             button.setLayoutParams(params);
 
             List<IntentData> dataToSend = new ArrayList<>();
@@ -81,33 +71,13 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
 
     }
 
-
-    private ActivityGroupCollection getActivityGroups() {
-        //TODO make this configurable
-        // Could also do something by parsing manifest ...
-        String packageRoot = getString(R.string.dispatch_package_root);
+    private ActivityGroupCollection getActivityGroupsFromXml(int resId) {
 
         ActivityGroupCollection activityGroupCollection = new ActivityGroupCollection();
-
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Activities", "Data exchange, etc.", packageRoot + "activities"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Views", "ListViews, etc.", packageRoot + "views"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Input Controls", "Radio Buttons, Checkboxes, etc.", packageRoot + "controls"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Media", "Media Player, etc.", packageRoot + "media"));
-
-        return activityGroupCollection;
-    }
-
-
-    private ActivityGroupCollection getActivityGroupsFromXml() {
-
-        ActivityGroupCollection activityGroupCollection = new ActivityGroupCollection();
-
-        //R.raw.activity_group_config
-
         XmlPullParser parser = Xml.newPullParser();
         try {
 
-            InputStream is = getApplicationContext().getResources().openRawResource(R.raw.activity_group_config);
+            InputStream is = getApplicationContext().getResources().openRawResource(resId);
             InputStreamReader isr = new InputStreamReader(is);
 
             // auto-detect the encoding from the stream
@@ -132,7 +102,7 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
                             activityGroup = new ActivityGroup(nameAttr, descriptionAttr, packageRoot + packageSuffixAttr);
                         }
                         else if (name.equalsIgnoreCase("PackageRoot")){
-                            packageRoot = parser.getText();
+                            packageRoot = parser.getAttributeValue(null, "name");
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -146,25 +116,15 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
                 }
                 eventType = parser.next();
             }
+            //TODO More robust "activity parsing" exception handling
         } catch (FileNotFoundException e) {
-            // TODO
+            traceMe(String.format("getActivityGroupsFromXml => %s", e.getMessage()));
         } catch (IOException e) {
-            // TODO
+            traceMe(String.format("getActivityGroupsFromXml => %s", e.getMessage()));
         } catch (Exception e){
-            // TODO
+            traceMe(String.format("getActivityGroupsFromXml => %s", e.getMessage()));
         }
 
         return activityGroupCollection;
-
     }
-
-    // Processes title tags in the feed.
-    private String readTag(XmlPullParser parser, String tagName) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, null, "tagName");
-        String value = ""; //readText(parser);
-        parser.require(XmlPullParser.END_TAG, null, "tagName");
-        return value;
-    }
-
-
 }

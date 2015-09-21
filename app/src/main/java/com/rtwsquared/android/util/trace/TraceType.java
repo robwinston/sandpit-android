@@ -28,10 +28,10 @@ public enum TraceType {
     {
         Tracer aTracer;
         try {
-            android.util.Log.d(TAG, String.format("TraceType.getTracer : %s ", itsClass.toString()));
+            //android.util.Log.d(TAG, String.format("TraceType.getTracer : %s ", itsClass.toString()));
             Class classes[] = new Class[] {Context.class, String.class };
             Constructor itsConstructor = itsClass.getConstructor(classes);
-            android.util.Log.d(TAG, String.format("TraceType.getTracer : %s ", itsConstructor.toString()));
+            //android.util.Log.d(TAG, String.format("TraceType.getTracer : %s ", itsConstructor.toString()));
             aTracer = (Tracer) itsConstructor.newInstance(applicationContext, parentClass);
 
         } catch (Exception e) {

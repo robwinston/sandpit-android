@@ -38,6 +38,8 @@ public class ParentActivity extends TraceBaseActivity {
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra(getString(R.string.childActivity_data_key_1))) {
+
+
                 ((TextView) findViewById(R.id.myactivity_text_id)).
                         setText(data.getStringExtra(getString(R.string.childActivity_data_key_1)));
             }

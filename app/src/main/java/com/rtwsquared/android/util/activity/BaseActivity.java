@@ -3,7 +3,9 @@ package com.rtwsquared.android.util.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.rtwsquared.android.sandpit.R;
 import com.rtwsquared.android.util.trace.TraceManager;
 import com.rtwsquared.android.util.trace.TraceManagerImpl;
 import com.rtwsquared.android.util.trace.TraceType;
@@ -25,6 +27,12 @@ public class BaseActivity extends Activity implements TraceManager {
     @Override
     public View findViewById(int id) {
         return holder.findView(id);
+    }
+
+    //public <T extends View> T findViewByIdAsType(int id)
+    public <T> T findViewByIdAsType(int id)
+    {
+        return (T) findViewById(id);
     }
 
     // View element caching section
@@ -79,7 +87,7 @@ public class BaseActivity extends Activity implements TraceManager {
     static final List<TraceType> DEFAULT_TRACE_TYPES = new ArrayList<TraceType>();
     static {
         DEFAULT_TRACE_TYPES.add(TraceType.LOG);
-        DEFAULT_TRACE_TYPES.add(TraceType.TOAST);
+        //DEFAULT_TRACE_TYPES.add(TraceType.TOAST);
     }
 
     TraceManagerImpl traceManager;

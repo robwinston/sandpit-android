@@ -27,18 +27,6 @@ public class TableDispatcherActivity extends DispatchBaseActivity {
             String packageName = getDispatchPackageName();
             List<Class<?>> classes = getClasses(packageName);
 
-            /*
-            // TODO remove this once testing is complete
-            // Duplicate entries to test table mechanics
-            List<Class<?>> classes = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                for (Class aClass : aClasses) {
-                    classes.add(aClass);
-                }
-            }
-            */
-
-
             int activities = 0;
             for (Class aClass : classes) {
                 TableRow tableRow = new TableRow(this);
@@ -48,9 +36,6 @@ public class TableDispatcherActivity extends DispatchBaseActivity {
 
                 // Create Launcher Button
                 final Button button = new Button(this);
-                // Give button an ID
-                // TODO decide whether or not an id is really needed
-                button.setId(getViewId());
                 button.setText("Launch");
                 tableRow.addView(button);
 
