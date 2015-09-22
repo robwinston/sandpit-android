@@ -7,6 +7,15 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,20 +31,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.rtwsquared.android.util.activity.JarDispatcherActivity"
+            android:label="@string/title_activity_jar_dispatcher" >
+        </activity>
+        <activity
             android:name="com.rtwsquared.android.util.activity.ButtonDispatcherActivity"
             android:label="@string/title_activity_button_dispatcher" >
         </activity>
         <activity
-            android:name="com.rtwsquared.android.util.activity.BaseActivity"
-            android:label="@string/title_activity_base" >
-        </activity>
-        <activity
-            android:name="com.rtwsquared.android.util.activity.TraceBaseActivity"
-            android:label="@string/title_activity_trace_base" >
-        </activity>
-        <activity
-            android:name="com.rtwsquared.android.util.activity.DispatchBaseActivity"
-            android:label="@string/title_activity_dispatch_base" >
+            android:name="com.rtwsquared.android.util.activity.TableDispatcherActivity"
+            android:label="@string/title_activity_table_dispatcher" >
         </activity>
         <activity
             android:name=".activities.ParentActivity"
@@ -46,26 +51,24 @@
             android:label="@string/title_activity_child1" >
         </activity>
         <activity
-            android:name="com.rtwsquared.android.util.activity.TableDispatcherActivity"
-            android:label="@string/title_activity_table_dispatcher" >
-        </activity>
-        <activity
             android:name=".media.SoundActivity"
             android:label="@string/title_activity_sound" >
         </activity>
         <activity
             android:name=".controls.ProgressBarActivity"
-            android:label="@string/title_activity_progress_bar"
-            >
+            android:label="@string/title_activity_progress_bar" >
         </activity>
         <activity
             android:name=".controls.ProgressDialogActivity"
             android:label="@string/title_activity_progress_dialog" >
         </activity>
         <activity
-            android:name="com.rtwsquared.android.util.activity.JarDispatcherActivity"
-            android:label="@string/title_activity_jar_dispatcher" >
+            android:name=".storage.SimpleFileActivity"
+            android:label="@string/title_activity_simple_file"
         </activity>
+        <activity android:name=".storage.DetailsActivity" />
+        <activity android:name=".PlaybackOverlayActivity" />
+        <activity android:name=".BrowseErrorActivity" />
     </application>
 
 </manifest>

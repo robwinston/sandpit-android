@@ -69,7 +69,12 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
                 break;
 
             case R.id.progress_bar_download_button_id:
-                String url = "http://upload.wikimedia.org/wikipedia/commons/0/05/Sna_large.png";
+                String url =
+                // "http://upload.wikimedia.org/wikipedia/commons/0/05/Sna_large.png";  <- this one doesn't have content-length in header, so doesn't work
+                        // TODO Understand how to handle download when content-length is missing ...
+                // "http://www.comolohago.cl/wp-content/uploads/2013/06/ANDROID.png";
+                // "http://4.bp.blogspot.com/-8v_k_fOcfP8/UQIL4ufghBI/AAAAAAAAEDo/9ffRRTM9AnA/s1600/android-robog-alone.png";
+                        "http://www.webmastergrade.com/wp-content/uploads/2011/04/Android-VS-Apple.jpg";
                 grabURL(url);
                 break;
 

@@ -12,19 +12,27 @@
         android:id="@+id/progress_dialog_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/progress_text_header" />
+        android:text="@string/progress_dialogue_text_header" />
 
     <LinearLayout
         android:id="@+id/progress_dialog_button_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/progress_dialog_header"
-        android:layout_marginTop="25dp">
+        android:layout_margin="25dp">
+
 
         <Button
             android:id="@+id/progress_dialog_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/progress_as_dialog_button_text" />
+            android:text="@string/progress_dialog_button_text" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/progress_dialog_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_dialog_button_layout"
+        android:text="@string/progress_dialogue_text_result" />
+
 </RelativeLayout>

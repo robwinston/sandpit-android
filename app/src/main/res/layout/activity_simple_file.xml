@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.rtwsquared.android.sandpit.storage.SimpleFileActivity">
+    <TextView
+        android:id="@+id/title"
+        android:text="My Diary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="23sp"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:background="#ffff"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"
+        android:padding="10dp"
+        android:textColor="#c3627666"
+        android:gravity="start"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:layout_width="320dp"
+        android:layout_height="300dp" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:text="Save"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

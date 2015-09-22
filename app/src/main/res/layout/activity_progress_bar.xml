@@ -1,74 +1,111 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.rtwsquared.android.sandpit.controls.ProgressBarActivity">
 
-    <TextView
-        android:id="@+id/progress_bar_header_id"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/progress_text_header"/>
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/progress_button_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progress_bar_header_id"
-        android:orientation="horizontal"
-        android:layout_marginTop="25dp"
-        >
-
-        <Button
-            android:id="@+id/progress_bar_download_button_id"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/progress_bar_download_button_text"
-            />
-        <Button
-            android:id="@+id/progress_bar_start_button_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/progress_bar_start_button_text"
-            />
-        <Button
-            android:id="@+id/progress_bar_stop_button_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/progress_bar_stop_button_text"
-            />
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/progress_bar_url_bar_header_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/progress_bar_url_text_header" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar_progressBar1_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progress_button_layout"
-        android:max="100"
-        android:layout_marginTop="25dp"
-        />
+            <LinearLayout
+                android:id="@+id/progress_bar_url_button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_bar_url_bar_header_id"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
-    <ProgressBar
-        android:id="@+id/progress_bar_progressBar2_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progress_bar_progressBar1_id"
-        android:max="100"
-        android:layout_marginTop="25dp"
-        />
+                <Button
+                    android:id="@+id/progress_bar_download_button_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/progress_bar_download_button_text" />
 
-    <TextView
-        android:id="@+id/progress_bar_result_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/progress_text_result"/>
+            </LinearLayout>
 
-    <ImageView
-        android:id="@+id/progress_bar_image_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/progress_bar_url_result_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_bar_url_button_layout"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_progressBar1_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:max="100" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_progressBar2_id"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:max="100" />
+
+                <TextView
+                    android:id="@+id/progress_bar_result_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/progress_dialogue_text_result" />
+
+                <ImageView
+                    android:id="@+id/progress_bar_image_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:contentDescription="@string/progress_bar_url_image_description" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/progress_bar_demo_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_bar_url_result_layout"
+                android:text="@string/progress_bar_demo_text_header" />
+
+            <LinearLayout
+                android:id="@+id/progress_bar_demo_button_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_bar_demo_id"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/progress_bar_start_button_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/progress_bar_button_start_text" />
+
+                <Button
+                    android:id="@+id/progress_bar_stop_button_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/progress_bar_button_stop_text" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

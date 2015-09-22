@@ -39,9 +39,7 @@ public class TraceManagerImpl implements TraceManager {
 
     @Override
     public void setTraceEnabled(boolean traceEnabled) {
-        for (Tracer tracer : tracers) {
-            tracer.setTraceEnabled(true);
-        }
+        for (Tracer tracer : tracers) tracer.setTraceEnabled(traceEnabled);
     }
 
     @Override

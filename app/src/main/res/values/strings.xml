@@ -3,11 +3,9 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_base">BaseActivity</string>
-    <string name="title_activity_trace_base">TraceBaseActivity</string>
-    <string name="title_activity_dispatch_base">DispatchBaseActivity</string>
     <string name="title_activity_button_dispatcher">ButtonDispatcherActivity</string>
     <string name="title_activity_table_dispatcher">TableDispatcherActivity</string>
+    <string name="title_activity_jar_dispatcher">JarDispatcherActivity</string>
 
     <string name="dispatch_package_name_key">PackageName</string>
     <string name="dispatch_goto_group_button_text">Go To</string>
@@ -32,12 +30,67 @@
     <string name="childActivity_data_key_1">ChildActivityData</string>
     <string name="childActivity_no_data_from_parent">No data from parent activity</string>
 
-    <string name="progress_text_header">Simulated File Download</string>
-    <string name="progress_text_result">Simulated Result Message</string>
-    <string name="progress_as_dialog_button_text">As Dialog</string>
+    <string name="progress_dialogue_text_header">Simulated File Download</string>
+    <string name="progress_dialogue_text_result">Simulated Result Message</string>
+    <string name="progress_dialog_button_text">Start</string>
 
-    <string name="progress_bar_stop_button_text">Stop</string>
+    <string name="progress_bar_url_text_header">URL File Download</string>
+    <string name="progress_bar_url_image_description">Downloaded image</string>
     <string name="progress_bar_download_button_text">Download</string>
-    <string name="progress_bar_start_button_text">Start</string>
-    <string name="title_activity_jar_dispatcher">JarDispatcherActivity</string>
+    <string name="progress_bar_text_header">Simulated File Download</string>
+    <string name="progress_bar_text_result">Simulated Result Message</string>
+    <string name="progress_bar_text_demo">Simulated File Download Start/Stop</string>
+    <string name="progress_bar_demo_text_header">Demonstrate start/stop/finished</string>
+    <string name="progress_bar_button_stop_text">Stop</string>
+    <string name="progress_bar_button_start_text">Start</string>
+    <string name="progress_bar_text_started">Started …</string>
+    <string name="progress_bar_text_stopped">Stopped!</string>
+    <string name="progress_bar_text_finished">Finished</string>
+
+    <string-array name="progress_bar_image_urls">
+        <item>"http://www.elandroidelibre.com/wp-content/uploads/2013/01/ANDROID-rico.jpg"</item>
+        <item>"http://www.comolohago.cl/wp-content/uploads/2013/06/ANDROID.png"</item>
+        <item>"http://4.bp.blogspot.com/-8v_k_fOcfP8/UQIL4ufghBI/AAAAAAAAEDo/9ffRRTM9AnA/s1600/android-robog-alone.png"</item>
+        <item>"http://www.webmastergrade.com/wp-content/uploads/2011/04/Android-VS-Apple.jpg"</item>
+    </string-array>
+    <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
+    <string name="related_movies">Related Videos</string>
+    <string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="init_text">00:00</string>
+    <string name="play_pause_description">Play Pause Button</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="no_video_found">No video was found</string>
+    <string name="about_app">About DemoCast Player</string>
+    <string name="version">Version: %1$s</string>
+    <string name="popular_header">Popular Videos</string>
+    <string name="preferences">PREFERENCES</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="watch_trailer_1">Watch trailer</string>
+    <string name="watch_trailer_2">FREE</string>
+    <string name="rent_1">Rent By Day</string>
+    <string name="rent_2">From $1.99</string>
+    <string name="buy_1">Buy and Own</string>
+    <string name="buy_2">AT $9.99</string>
+    <string name="movie">Movie</string>
+    <string name="should_start">shouldStart</string>
+    <string name="start_position">startPosition</string>
+    <string name="search_results">Search Results</string>
+
+    <!-- Error messages -->
+    <string name="video_error_media_load_timeout">Media loading timed out</string>
+    <string name="video_error_server_inaccessible">Media server was not reachable</string>
+    <string name="video_error_unknown_error">Failed to load video</string>
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
+    <string name="oops">Oops</string>
+    <string name="title_activity_simple_file">SimpleFileActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
