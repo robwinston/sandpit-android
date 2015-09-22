@@ -64,11 +64,8 @@
         </activity>
         <activity
             android:name=".storage.SimpleFileActivity"
-            android:label="@string/title_activity_simple_file"
+            android:label="@string/title_activity_simple_file">
         </activity>
-        <activity android:name=".storage.DetailsActivity" />
-        <activity android:name=".PlaybackOverlayActivity" />
-        <activity android:name=".BrowseErrorActivity" />
     </application>
 
 </manifest>
