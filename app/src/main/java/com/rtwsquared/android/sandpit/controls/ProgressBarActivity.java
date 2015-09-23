@@ -27,55 +27,56 @@ import java.net.URLConnection;
 
 public class ProgressBarActivity extends TraceBaseActivity implements OnClickListener{
 
-    private ProgressBar progressBar1;
-    private ProgressBar progressBar2;
+    private ProgressBar progressBarUrl;
+    private ProgressBar progressBarDemo;
     private String filepath = "MyFileStorage";
+    private String[] imageURLs;
     private File directory;
-    private TextView finished;
+    private TextView statusUrl;
+    private TextView statusDemo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress_bar);
 
+        imageURLs = getImageURLsFromConfig();
+
         ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
         directory = contextWrapper.getDir(filepath, Context.MODE_PRIVATE);
 
-        progressBar1 = (ProgressBar) findViewById(R.id.progress_bar_progressBar1_id);
-        progressBar1.setVisibility(View.GONE);
-        progressBar2 = (ProgressBar) findViewById(R.id.progress_bar_progressBar2_id);
-        progressBar2.setVisibility(View.GONE);
-        finished = (TextView) findViewById(R.id.progress_bar_result_id);
-        finished.setVisibility(View.GONE);
+        progressBarUrl = (ProgressBar) findViewById(R.id.progress_bar_url_progressBar_id);
+        progressBarUrl.setVisibility(View.GONE);
+        statusUrl = (TextView) findViewById(R.id.progress_bar_url_result_id);
+        statusUrl.setVisibility(View.GONE);
 
-        Button start = (Button) findViewById(R.id.progress_bar_start_button_id);
-        start.setOnClickListener(this);
-        Button stop = (Button) findViewById(R.id.progress_bar_stop_button_id);
-        stop.setOnClickListener(this);
-        Button download = (Button) findViewById(R.id.progress_bar_download_button_id);
-        download.setOnClickListener(this);
+        Button downloadButtonUrl = (Button) findViewById(R.id.progress_bar_url_download_button_id);
+        downloadButtonUrl.setOnClickListener(this);
 
+        Button startButtonDemo = (Button) findViewById(R.id.progress_bar_demo_start_button_id);
+        startButtonDemo.setOnClickListener(this);
+        Button stopButtonDemo = (Button) findViewById(R.id.progress_bar_demo_stop_button_id);
+        stopButtonDemo.setOnClickListener(this);
+        progressBarDemo = (ProgressBar) findViewById(R.id.progress_bar_demo_progress_bar_id);
+        progressBarDemo.setVisibility(View.GONE);
+        statusDemo = (TextView) findViewById(R.id.progress_bar_demo_result_id);
     }
 
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.progress_bar_start_button_id:
-                progressBar1.setVisibility(View.VISIBLE);
+            case R.id.progress_bar_demo_start_button_id:
+                progressBarDemo.setVisibility(View.VISIBLE);
+                statusDemo.setText(getString(R.string.progress_bar_demo_text_started));
                 break;
 
-            case R.id.progress_bar_stop_button_id:
-                progressBar1.setVisibility(View.GONE);
+            case R.id.progress_bar_demo_stop_button_id:
+                progressBarDemo.setVisibility(View.GONE);
+                statusDemo.setText(getString(R.string.progress_bar_demo_text_started));
                 break;
 
-            case R.id.progress_bar_download_button_id:
-                String url =
-                // "http://upload.wikimedia.org/wikipedia/commons/0/05/Sna_large.png";  <- this one doesn't have content-length in header, so doesn't work
-                        // TODO Understand how to handle download when content-length is missing ...
-                // "http://www.comolohago.cl/wp-content/uploads/2013/06/ANDROID.png";
-                // "http://4.bp.blogspot.com/-8v_k_fOcfP8/UQIL4ufghBI/AAAAAAAAEDo/9ffRRTM9AnA/s1600/android-robog-alone.png";
-                        "http://www.webmastergrade.com/wp-content/uploads/2011/04/Android-VS-Apple.jpg";
-                grabURL(url);
+            case R.id.progress_bar_url_download_button_id:
+                grabURL(imageURLs[getURLIndex()]);
                 break;
 
             // More buttons go here (if any) ...
@@ -83,17 +84,30 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
         }
     }
 
+    // placeholder to permit doing this some other way ...
+    private String[] getImageURLsFromConfig()
+    {
+        return getResources().getStringArray(R.array.progress_bar_url_image_urls);
+    }
+
+    int index = 0;
+    private int getURLIndex() {
+        int indexToReturn = index % imageURLs.length;
+        index += 1;
+        return indexToReturn;
+    }
+
+
     public void grabURL(String url) {
         new GrabURL().execute(url);
     }
-
     private class GrabURL extends AsyncTask<String, Integer, String> {
 
 
         protected void onPreExecute() {
-            progressBar2.setVisibility(View.VISIBLE);
-            progressBar2.setProgress(0);
-            finished.setVisibility(View.GONE);
+            statusUrl.setVisibility(View.VISIBLE);
+            progressBarUrl.setVisibility(View.VISIBLE);
+            statusDemo.setVisibility(View.GONE);
 
         }
 
@@ -133,9 +147,10 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
         }
 
         protected void onProgressUpdate(Integer... progress) {
-            finished.setVisibility(View.VISIBLE);
-            finished.setText(String.valueOf(progress[0]) + "%");
-            progressBar2.setProgress(progress[0]);
+            statusUrl.setVisibility(View.VISIBLE);
+            progressBarUrl.setVisibility(View.VISIBLE);
+            statusUrl.setText(String.valueOf(progress[0]) + "%");
+            progressBarUrl.setProgress(progress[0]);
         }
 
         protected void onCancelled() {
@@ -147,13 +162,12 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
         }
 
         protected void onPostExecute(String filename) {
-            progressBar2.setProgress(100);
-            finished.setVisibility(View.VISIBLE);
-            finished.setText("Finished downloading...");
+            progressBarUrl.setProgress(100);
+            statusUrl.setVisibility(View.VISIBLE);
+            statusUrl.setText("Finished downloading...");
             File myFile = new File(directory , filename);
             ImageView myImage = (ImageView) findViewById(R.id.progress_bar_image_id);
             myImage.setImageBitmap(BitmapFactory.decodeFile(myFile.getAbsolutePath()));
         }
-
     }
 }

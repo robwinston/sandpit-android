@@ -16,6 +16,7 @@
     <string name="title_activity_progress_dialog">ProgressDialogActivity</string>
     <string name="title_activity_parent">ParentActivity</string>
     <string name="title_activity_child1">ChildActivity1</string>
+    <string name="title_activity_simple_file">SimpleFileActivity</string>
 
 
     <string name="parentActivity_title">Parent Activity</string>
@@ -36,23 +37,24 @@
 
     <string name="progress_bar_url_text_header">URL File Download</string>
     <string name="progress_bar_url_image_description">Downloaded image</string>
-    <string name="progress_bar_download_button_text">Download</string>
-    <string name="progress_bar_text_header">Simulated File Download</string>
-    <string name="progress_bar_text_result">Simulated Result Message</string>
-    <string name="progress_bar_text_demo">Simulated File Download Start/Stop</string>
-    <string name="progress_bar_demo_text_header">Demonstrate start/stop/finished</string>
-    <string name="progress_bar_button_stop_text">Stop</string>
-    <string name="progress_bar_button_start_text">Start</string>
-    <string name="progress_bar_text_started">Started …</string>
-    <string name="progress_bar_text_stopped">Stopped!</string>
-    <string name="progress_bar_text_finished">Finished</string>
-
-    <string-array name="progress_bar_image_urls">
+    <string name="progress_bar_url_download_button_text">Download</string>
+    <string name="progress_bar_url_text_result">Simulated URL Result Message</string>
+    <string-array name="progress_bar_url_image_urls">
         <item>"http://www.elandroidelibre.com/wp-content/uploads/2013/01/ANDROID-rico.jpg"</item>
         <item>"http://www.comolohago.cl/wp-content/uploads/2013/06/ANDROID.png"</item>
         <item>"http://4.bp.blogspot.com/-8v_k_fOcfP8/UQIL4ufghBI/AAAAAAAAEDo/9ffRRTM9AnA/s1600/android-robog-alone.png"</item>
         <item>"http://www.webmastergrade.com/wp-content/uploads/2011/04/Android-VS-Apple.jpg"</item>
     </string-array>
+
+    <string name="progress_bar_demo_text_header">Demonstrate start/stop/finished</string>
+    <string name="progress_bar_demo_text_result">Simulated Demo Result Message</string>
+    <string name="progress_bar_demo_button_stop_text">Stop</string>
+    <string name="progress_bar_demo_button_start_text">Start</string>
+    <string name="progress_bar_demo_text_started">Started …</string>
+    <string name="progress_bar_demo_text_stopped">Stopped!</string>
+    <string name="progress_bar_demo_text_finished">Finished</string>
+
+<!--
     <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
     <string name="related_movies">Related Videos</string>
     <string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>
@@ -82,15 +84,15 @@
     <string name="should_start">shouldStart</string>
     <string name="start_position">startPosition</string>
     <string name="search_results">Search Results</string>
-
-    <!-- Error messages -->
+-->
+    <!-- Error messages
     <string name="video_error_media_load_timeout">Media loading timed out</string>
     <string name="video_error_server_inaccessible">Media server was not reachable</string>
     <string name="video_error_unknown_error">Failed to load video</string>
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
     <string name="oops">Oops</string>
-    <string name="title_activity_simple_file">SimpleFileActivity</string>
 
     <string name="hello_world">Hello world!</string>
+     -->
 </resources>
