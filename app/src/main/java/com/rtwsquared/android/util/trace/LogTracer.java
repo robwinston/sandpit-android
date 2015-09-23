@@ -17,7 +17,9 @@ public class LogTracer extends TraceBase implements Tracer {
 
     public LogTracer(Context context, String parentClass)
     {
+
         super(context, parentClass);
+        setTimeEnabled(false);
     }
 
     public void traceMe(String message)

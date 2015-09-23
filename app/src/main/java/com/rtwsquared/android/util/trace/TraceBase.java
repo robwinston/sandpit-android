@@ -33,13 +33,24 @@ abstract class TraceBase {
     private final String timeFormat = "HH:mm:ss.SSS";
     private final SimpleDateFormat sdf = new SimpleDateFormat(timeFormat, Locale.UK);
 
+    private boolean includeTime = true;
+    public boolean isTimeEnabled() {
+        return includeTime;
+    }
+    protected void setTimeEnabled(boolean includeTime) {
+        this.includeTime = includeTime;
+    }
+
+
     protected String getTime() {
         return sdf.format(new Date(System.currentTimeMillis()));
     }
 
     protected String getBaseMessage(String callingMethod) {
         // get the StackTraceElement for the calling method & use it to get its name
-        return String.format("%s: %s.%s()", getTime(), parentClass, callingMethod);
+        return isTimeEnabled() ?
+                String.format("%s: %s.%s()", getTime(), parentClass, callingMethod) :
+                String.format("%s.%s()", parentClass, callingMethod);
     }
 
     // This value backs us through the call chain that gets us here
