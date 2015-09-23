@@ -14,43 +14,40 @@ public class TraceBaseActivity extends BaseActivity {
 
     @Override
     protected void onStart() {
-        traceCacheStats();
-        //traceMe("");
+        //traceCacheStats();
+        traceMe("");
         super.onStart();
     }
 
     @Override
     protected void onRestart() {
-        //traceCacheStats();
-        //traceMe("");
+        traceMe("");
         super.onRestart();
     }
 
     @Override
     protected void onResume() {
-        //traceCacheStats();
-        //traceMe("");
+        traceMe("");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        //traceCacheStats();
-        //traceMe("");
+        traceMe("");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        //traceCacheStats();
-        //traceMe("");
+        traceCacheStats();
+        traceMe("");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        traceCacheStats();
-        //traceMe("");
+        //traceCacheStats();
+        traceMe("");
         super.onDestroy();
     }
 }

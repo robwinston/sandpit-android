@@ -33,7 +33,8 @@
 
     <string name="progress_dialogue_text_header">Simulated File Download</string>
     <string name="progress_dialogue_text_result">Simulated Result Message</string>
-    <string name="progress_dialog_button_text">Start</string>
+    <string name="progress_dialog_button_text">As Progress Dialog</string>
+    <string name="progress_dialog_bar_button_text">As Progress Bar</string>
 
     <string name="progress_bar_url_text_header">URL File Download</string>
     <string name="progress_bar_url_image_description">Downloaded image</string>
@@ -50,8 +51,11 @@
     <string name="progress_bar_demo_text_result">Simulated Demo Result Message</string>
     <string name="progress_bar_demo_button_stop_text">Stop</string>
     <string name="progress_bar_demo_button_start_text">Start</string>
+
+    <!-- used by both progress demos -->
     <string name="progress_bar_demo_text_started">Started …</string>
     <string name="progress_bar_demo_text_stopped">Stopped!</string>
+    <string name="progress_bar_demo_text_cancelled">Cancelled!</string>
     <string name="progress_bar_demo_text_finished">Finished</string>
 
 <!--

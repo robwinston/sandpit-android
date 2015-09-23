@@ -19,14 +19,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/progress_dialog_header"
+        android:orientation="vertical"
         android:layout_margin="25dp">
-
 
         <Button
             android:id="@+id/progress_dialog_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/progress_dialog_button_text" />
+        <Button
+            android:id="@+id/progress_dialog_bar_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progress_dialog_bar_button_text" />
+
+        <ProgressBar
+            android:id="@+id/progress_dialog_progress_bar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_marginTop="25dp"
+            android:max="100" />
+
     </LinearLayout>
     <TextView
         android:id="@+id/progress_dialog_result"
