@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 import com.rtwsquared.android.sandpit.R;
 import com.rtwsquared.android.util.activity.TraceBaseActivity;
 
-public class ProgressDialogActivity extends TraceBaseActivity {
+public class ProgressMockActivity extends TraceBaseActivity {
 
-    private static final int SLEEP_TIME = 100;
+    private static final int SLEEP_TIME = 50;
     private int progressBarStatus = 0;
     private Handler progressBarHandler = new Handler();
 
@@ -22,8 +22,8 @@ public class ProgressDialogActivity extends TraceBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress_dialog);
-        setupTrace(ProgressDialogActivity.class.getSimpleName());
+        setContentView(R.layout.activity_progress_mock);
+        setupTrace(ProgressMockActivity.class.getSimpleName());
 
         addProgressDialogButtonListener();
         addProgressBarButtonListener();
@@ -36,16 +36,6 @@ public class ProgressDialogActivity extends TraceBaseActivity {
 
                     @Override
                     public void onClick(View v) {
-
-                        /*
-                        // prepare for a progress dialog
-                        final ProgressDialog progressDialog = new ProgressDialog(v.getContext());
-                        progressDialog.setCancelable(true);
-                        progressDialog.setMessage("File downloading ...");
-                        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                        progressDialog.setProgress(0);
-                        progressDialog.setMax(100);
-*/
 
                         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_dialog_progress_bar_id);
 
@@ -60,13 +50,11 @@ public class ProgressDialogActivity extends TraceBaseActivity {
                             @Override
                             public void uncaughtException(Thread thread, Throwable ex) {
                                 traceMe("ProgressBar thread exception: " + ex.getMessage());
+                                setProgressComplete();
                             }
                         });
 
-
-                        //Only allow one at a time ...
                         setProgressStart();
-
                         progressBar.setVisibility(View.VISIBLE);
                         theThread.start();
                     }
@@ -108,32 +96,15 @@ public class ProgressDialogActivity extends TraceBaseActivity {
                             public void onCancel(DialogInterface dialog) {
                                 traceMe("Progress dialog cancelled");
                                 theThread.interrupt();
-                                // re-enable buttons
-                                findViewById(R.id.progress_dialog_bar_button_id).setEnabled(true);
-                                findViewById(R.id.progress_dialog_button_id).setEnabled(true);
+                                setProgressCancelled();
                             }
                         });
+
                         setProgressStart();
-
-
                         progressDialog.show();
                         theThread.start();
                     }
                 });
-    }
-
-    private void setProgressStart() {
-        //Only allow one at a time ...
-        setEnabled(R.id.progress_dialog_button_id, false);
-        setEnabled(R.id.progress_dialog_bar_button_id, false);
-        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_started));
-    }
-
-    private void setProgressComplete() {
-        //Only allow one at a time ...
-        setEnabled(R.id.progress_dialog_button_id, true);
-        setEnabled(R.id.progress_dialog_bar_button_id, true);
-        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_finished));
     }
 
     private Thread getThreadForProgressDialog(final ProgressDialog progressDialog) {
@@ -229,17 +200,36 @@ public class ProgressDialogActivity extends TraceBaseActivity {
         });
     }
 
+    // yes, these methods are trivial & similar
+    // but keeping them to make consuming code easier to read
+    private void setProgressCancelled() {
+        setEnabled(R.id.progress_dialog_bar_button_id, true);
+        setEnabled(R.id.progress_dialog_button_id, true);
+        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_cancelled));
+    }
+
+    private void setProgressStart() {
+        //Only allow one at a time ...
+        setEnabled(R.id.progress_dialog_button_id, false);
+        setEnabled(R.id.progress_dialog_bar_button_id, false);
+        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_started));
+    }
+
+    private void setProgressComplete() {
+        setEnabled(R.id.progress_dialog_button_id, true);
+        setEnabled(R.id.progress_dialog_bar_button_id, true);
+        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_finished));
+    }
+
+
     private int fileSize = 0;
-
-    // file download simulator... a really simple
+    // a really simple file download simulator...
     public int doSomeTasks() {
-
         while (fileSize <= 1000000) {
             fileSize++;
             if (fileSize % 10000 == 0)
                 return fileSize / 10000;
         }
-
         return 100;
     }
 }

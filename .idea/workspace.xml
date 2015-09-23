@@ -10,12 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="caa7a973-1e40-4bce-9889-ebd6f23a5071" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/TraceBaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/TraceBaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressMockActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_bar.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_url_download.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_mock.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/rtwsquared/android/sandpit/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/rtwsquared/android/sandpit/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -38,58 +38,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProgressDialogActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java">
+      <file leaf-file-name="ProgressMockActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressMockActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7375">
-              <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
               <folding>
-                <element signature="e#2208#2523#0" expanded="true" />
-                <element signature="e#2522#2523#0" expanded="true" />
-                <element signature="e#2927#5005#0" expanded="true" />
-                <element signature="e#3864#4182#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4246#4827#0" expanded="true" />
-                <element signature="e#4826#4827#0" expanded="true" />
-                <element signature="e#5004#5005#0" expanded="true" />
-                <element signature="e#5267#5317#0" expanded="true" />
-                <element signature="e#5580#5631#0" expanded="true" />
-                <element signature="e#5752#7242#0" expanded="true" />
-                <element signature="e#6315#6501#0" expanded="true" />
-                <element signature="e#6500#6501#0" expanded="true" />
-                <element signature="e#7073#7216#0" expanded="true" />
-                <element signature="e#7215#7216#0" expanded="true" />
-                <element signature="e#7241#7242#0" expanded="true" />
-                <element signature="e#7354#8877#0" expanded="true" />
-                <element signature="e#7908#8088#0" expanded="true" />
-                <element signature="e#8087#8088#0" expanded="true" />
-                <element signature="e#8547#8833#0" expanded="true" />
-                <element signature="e#8832#8833#0" expanded="true" />
-                <element signature="e#8876#8877#0" expanded="true" />
+                <element signature="e#1119#2248#0" expanded="true" />
+                <element signature="e#1683#2053#0" expanded="true" />
+                <element signature="e#2052#2053#0" expanded="true" />
+                <element signature="e#2247#2248#0" expanded="true" />
+                <element signature="e#2400#4286#0" expanded="true" />
+                <element signature="e#3337#3655#0" expanded="true" />
+                <element signature="e#3654#3655#0" expanded="true" />
+                <element signature="e#3719#4109#0" expanded="true" />
+                <element signature="e#4108#4109#0" expanded="true" />
+                <element signature="e#4285#4286#0" expanded="true" />
+                <element signature="e#4407#5897#0" expanded="true" />
+                <element signature="e#4970#5156#0" expanded="true" />
+                <element signature="e#5155#5156#0" expanded="true" />
+                <element signature="e#5728#5871#0" expanded="true" />
+                <element signature="e#5870#5871#0" expanded="true" />
+                <element signature="e#5896#5897#0" expanded="true" />
+                <element signature="e#6009#7532#0" expanded="true" />
+                <element signature="e#6563#6743#0" expanded="true" />
+                <element signature="e#6742#6743#0" expanded="true" />
+                <element signature="e#7202#7488#0" expanded="true" />
+                <element signature="e#7487#7488#0" expanded="true" />
+                <element signature="e#7531#7532#0" expanded="true" />
+                <element signature="e#7867#7919#0" expanded="true" />
+                <element signature="e#8181#8231#0" expanded="true" />
+                <element signature="e#8455#8506#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.4814816">
-              <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.37769786">
+              <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java">
+      <file leaf-file-name="ProgressURLDownloadActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
+              <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
               <folding>
-                <element signature="e#2183#2184#0" expanded="true" />
-                <element signature="e#2233#2234#0" expanded="true" />
-                <element signature="e#3456#3467#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2545#2595#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="58" column="53" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="71" />
+              <folding>
+                <element signature="e#2639#2677#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1580,15 +1594,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/trace/TraceManagerImpl.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_simple_file.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/storage/SimpleFileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_bar.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_progress_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/TraceBaseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressMockActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -1596,10 +1612,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1506" />
-    <option name="y" value="-99" />
-    <option name="width" value="1168" />
-    <option name="height" value="819" />
+    <option name="x" value="1473" />
+    <option name="y" value="-260" />
+    <option name="width" value="1217" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1850,6 +1866,10 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -2094,8 +2114,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1506" y="-99" width="1168" height="819" extended-state="0" />
-    <editor active="true" />
+    <frame x="1473" y="-260" width="1217" height="1002" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32859176" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35846373" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -2108,10 +2128,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32147938" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39118066" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31038374" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3206039" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30723405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31009957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -2123,7 +2144,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.264166" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31009957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2170,20 +2190,20 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java</url>
-          <line>169</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java</url>
+          <line>165</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java</url>
-          <line>141</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java</url>
+          <line>139</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java</url>
-          <line>221</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressMockActivity.java</url>
+          <line>192</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
@@ -2373,6 +2393,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="137" column="36" selection-start-line="137" selection-start-column="18" selection-end-line="137" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2509,22 +2530,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="e#933#951#0" expanded="true" />
-            <element signature="e#1079#1097#0" expanded="true" />
-            <element signature="e#1649#1691#0" expanded="true" />
-            <element signature="e#2160#2191#0" expanded="true" />
-            <element signature="e#2306#2336#0" expanded="true" />
-            <element signature="e#2460#2497#0" expanded="true" />
-            <element signature="e#2624#2664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/storage/SimpleFileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2543,6 +2548,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63829786">
           <caret line="245" column="13" selection-start-line="245" selection-start-column="13" selection-end-line="245" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2561,7 +2567,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_progress_bar.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_progress_url_download.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="49" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
@@ -2572,7 +2578,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_progress_dialog.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_progress_mock.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
@@ -2583,16 +2589,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressBarActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="5" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/TraceBaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2601,9 +2597,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressMockActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+          <folding>
+            <element signature="e#1119#2248#0" expanded="true" />
+            <element signature="e#1683#2053#0" expanded="true" />
+            <element signature="e#2052#2053#0" expanded="true" />
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2400#4286#0" expanded="true" />
+            <element signature="e#3337#3655#0" expanded="true" />
+            <element signature="e#3654#3655#0" expanded="true" />
+            <element signature="e#3719#4109#0" expanded="true" />
+            <element signature="e#4108#4109#0" expanded="true" />
+            <element signature="e#4285#4286#0" expanded="true" />
+            <element signature="e#4407#5897#0" expanded="true" />
+            <element signature="e#4970#5156#0" expanded="true" />
+            <element signature="e#5155#5156#0" expanded="true" />
+            <element signature="e#5728#5871#0" expanded="true" />
+            <element signature="e#5870#5871#0" expanded="true" />
+            <element signature="e#5896#5897#0" expanded="true" />
+            <element signature="e#6009#7532#0" expanded="true" />
+            <element signature="e#6563#6743#0" expanded="true" />
+            <element signature="e#6742#6743#0" expanded="true" />
+            <element signature="e#7202#7488#0" expanded="true" />
+            <element signature="e#7487#7488#0" expanded="true" />
+            <element signature="e#7531#7532#0" expanded="true" />
+            <element signature="e#7867#7919#0" expanded="true" />
+            <element signature="e#8181#8231#0" expanded="true" />
+            <element signature="e#8455#8506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/util/activity/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.97770154">
           <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
           <folding>
             <element signature="e#2183#2184#0" expanded="true" />
@@ -2613,42 +2643,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressURLDownloadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4814816">
-          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2545#2595#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/rtwsquared/android/sandpit/controls/ProgressDialogActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7375">
-          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="53" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="71" />
           <folding>
-            <element signature="e#2208#2523#0" expanded="true" />
-            <element signature="e#2522#2523#0" expanded="true" />
-            <element signature="e#2927#5005#0" expanded="true" />
-            <element signature="e#3864#4182#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4246#4827#0" expanded="true" />
-            <element signature="e#4826#4827#0" expanded="true" />
-            <element signature="e#5004#5005#0" expanded="true" />
-            <element signature="e#5267#5317#0" expanded="true" />
-            <element signature="e#5580#5631#0" expanded="true" />
-            <element signature="e#5752#7242#0" expanded="true" />
-            <element signature="e#6315#6501#0" expanded="true" />
-            <element signature="e#6500#6501#0" expanded="true" />
-            <element signature="e#7073#7216#0" expanded="true" />
-            <element signature="e#7215#7216#0" expanded="true" />
-            <element signature="e#7241#7242#0" expanded="true" />
-            <element signature="e#7354#8877#0" expanded="true" />
-            <element signature="e#7908#8088#0" expanded="true" />
-            <element signature="e#8087#8088#0" expanded="true" />
-            <element signature="e#8547#8833#0" expanded="true" />
-            <element signature="e#8832#8833#0" expanded="true" />
-            <element signature="e#8876#8877#0" expanded="true" />
+            <element signature="e#2639#2677#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37769786">
+          <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+          <folding />
         </state>
       </provider>
     </entry>

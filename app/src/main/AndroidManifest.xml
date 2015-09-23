@@ -55,12 +55,12 @@
             android:label="@string/title_activity_sound" >
         </activity>
         <activity
-            android:name=".controls.ProgressBarActivity"
-            android:label="@string/title_activity_progress_bar" >
+            android:name=".controls.ProgressURLDownloadActivity"
+            android:label="@string/title_activity_progress_url_download" >
         </activity>
         <activity
-            android:name=".controls.ProgressDialogActivity"
-            android:label="@string/title_activity_progress_dialog" >
+            android:name=".controls.ProgressMockActivity"
+            android:label="@string/title_activity_progress_mock" >
         </activity>
         <activity
             android:name=".storage.SimpleFileActivity"

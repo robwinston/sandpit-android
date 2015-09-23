@@ -24,7 +24,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ProgressBarActivity extends TraceBaseActivity implements OnClickListener{
+public class ProgressURLDownloadActivity extends TraceBaseActivity implements OnClickListener {
 
     private String[] imageURLs;
     private File directory;
@@ -32,8 +32,8 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress_bar);
-        setupTrace(ProgressBarActivity.class.getSimpleName());
+        setContentView(R.layout.activity_progress_url_download);
+        setupTrace(ProgressURLDownloadActivity.class.getSimpleName());
 
         imageURLs = getImageURLsFromConfig();
 
@@ -69,9 +69,6 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
             case R.id.progress_bar_url_download_button_id:
                 grabURL(imageURLs[getURLIndex()]);
                 break;
-
-            // More buttons go here (if any) ...
-
         }
     }
 
@@ -90,24 +87,25 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
     */
 
     // placeholder to permit doing this some other way ...
-    private String[] getImageURLsFromConfig()
-    {
+    private String[] getImageURLsFromConfig() {
         return getResources().getStringArray(R.array.progress_bar_url_image_urls);
     }
 
     int index = 0;
+
     private int getURLIndex() {
         int indexToReturn = index % imageURLs.length;
         index += 1;
         return indexToReturn;
     }
 
-
     private GrabURL grabURL;
+
     public void grabURL(String url) {
         grabURL = new GrabURL();
         grabURL.execute(url);
     }
+
     private class GrabURL extends AsyncTask<String, Integer, String> {
 
 
@@ -119,7 +117,7 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
         protected String doInBackground(String... urls) {
 
             String filename = "MySampleFile.png";
-            File myFile = new File(directory , filename);
+            File myFile = new File(directory, filename);
 
             try {
                 URL url = new URL(urls[0]);
@@ -146,9 +144,7 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return filename;
-
         }
 
         protected void onProgressUpdate(Integer... progress) {
@@ -170,7 +166,7 @@ public class ProgressBarActivity extends TraceBaseActivity implements OnClickLis
             ((ProgressBar) findViewById(R.id.progress_bar_url_progressBar_id)).setProgress(100);
             setVisibility(R.id.progress_bar_url_result_id, View.VISIBLE);
             setTextViewText(R.id.progress_bar_url_result_id, "Finished downloading...");
-            File myFile = new File(directory , filename);
+            File myFile = new File(directory, filename);
             ((ImageView) findViewById(R.id.progress_bar_image_id)).setImageBitmap(BitmapFactory.decodeFile(myFile.getAbsolutePath()));
         }
     }

@@ -11,12 +11,12 @@
     <string name="dispatch_goto_group_button_text">Go To</string>
     <string name="dispatch_package_root">"com.rtwsquared.android.sandpit."</string>
 
-    <string name="title_activity_sound">SoundActivity</string>
-    <string name="title_activity_progress_bar">ProgressBarActivity</string>
-    <string name="title_activity_progress_dialog">ProgressDialogActivity</string>
-    <string name="title_activity_parent">ParentActivity</string>
-    <string name="title_activity_child1">ChildActivity1</string>
-    <string name="title_activity_simple_file">SimpleFileActivity</string>
+    <string name="title_activity_sound">Sound Activity</string>
+    <string name="title_activity_progress_url_download">Progress URL Download Activity</string>
+    <string name="title_activity_progress_mock">Progress Mock Activity</string>
+    <string name="title_activity_parent">Parent Activity</string>
+    <string name="title_activity_child1">Child Activity1</string>
+    <string name="title_activity_simple_file">Simple File Activity</string>
 
 
     <string name="parentActivity_title">Parent Activity</string>
