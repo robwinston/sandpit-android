@@ -9,32 +9,38 @@
     tools:context="com.rtwsquared.android.sandpit.controls.ProgressMockActivity">
 
     <TextView
-        android:id="@+id/progress_dialog_header"
+        android:id="@+id/progress_mock_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/progress_dialogue_text_header" />
+        android:text="@string/progress_mock_text_header" />
 
     <LinearLayout
-        android:id="@+id/progress_dialog_button_layout"
+        android:id="@+id/progress_mock_button_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progress_dialog_header"
+        android:layout_below="@id/progress_mock_header"
         android:orientation="vertical"
         android:layout_margin="25dp">
 
         <Button
-            android:id="@+id/progress_dialog_button_id"
+            android:id="@+id/progress_mock_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/progress_dialog_button_text" />
+            android:text="@string/progress_mock_button_text" />
         <Button
-            android:id="@+id/progress_dialog_bar_button_id"
+            android:id="@+id/progress_mock_bar_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/progress_dialog_bar_button_text" />
+            android:text="@string/progress_mock_bar_button_text" />
+
+        <Button
+            android:id="@+id/progress_mock_cancel_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progress_mock_cancel_button_text" />
 
         <ProgressBar
-            android:id="@+id/progress_dialog_progress_bar_id"
+            android:id="@+id/progress_mock_progress_bar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@android:style/Widget.ProgressBar.Horizontal"
@@ -43,10 +49,10 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/progress_dialog_result"
+        android:id="@+id/progress_mock_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progress_dialog_button_layout"
-        android:text="@string/progress_dialogue_text_result" />
+        android:layout_below="@id/progress_mock_button_layout"
+        android:text="@string/progress_mock_text_result" />
 
 </RelativeLayout>

@@ -31,10 +31,11 @@
     <string name="childActivity_data_key_1">ChildActivityData</string>
     <string name="childActivity_no_data_from_parent">No data from parent activity</string>
 
-    <string name="progress_dialogue_text_header">Simulated File Download</string>
-    <string name="progress_dialogue_text_result">Simulated Result Message</string>
-    <string name="progress_dialog_button_text">As Progress Dialog</string>
-    <string name="progress_dialog_bar_button_text">As Progress Bar</string>
+    <string name="progress_mock_text_header">Simulated File Download</string>
+    <string name="progress_mock_text_result">Simulated Result Message</string>
+    <string name="progress_mock_button_text">As Progress Dialog</string>
+    <string name="progress_mock_bar_button_text">As Progress Bar</string>
+    <string name="progress_mock_cancel_button_text">Cancel</string>
 
     <string name="progress_bar_url_text_header">URL File Download</string>
     <string name="progress_bar_url_image_description">Downloaded image</string>
@@ -53,50 +54,10 @@
     <string name="progress_bar_demo_button_start_text">Start</string>
 
     <!-- used by both progress demos -->
+    <string name="progress_bar_demo_text_waiting">Initiate an action …</string>
     <string name="progress_bar_demo_text_started">Started …</string>
     <string name="progress_bar_demo_text_stopped">Stopped!</string>
     <string name="progress_bar_demo_text_cancelled">Cancelled!</string>
     <string name="progress_bar_demo_text_finished">Finished</string>
 
-<!--
-    <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
-    <string name="related_movies">Related Videos</string>
-    <string name="vertical_grid_title"><![CDATA[Vertical Video Grid]]></string>
-    <string name="error">Error</string>
-    <string name="ok">OK</string>
-    <string name="pause">Pause</string>
-    <string name="play">Play</string>
-    <string name="stop">Stop</string>
-    <string name="init_text">00:00</string>
-    <string name="play_pause_description">Play Pause Button</string>
-    <string name="loading">Loading&#8230;</string>
-    <string name="no_video_found">No video was found</string>
-    <string name="about_app">About DemoCast Player</string>
-    <string name="version">Version: %1$s</string>
-    <string name="popular_header">Popular Videos</string>
-    <string name="preferences">PREFERENCES</string>
-    <string name="grid_view">Grid View</string>
-    <string name="error_fragment">Error Fragment</string>
-    <string name="personal_settings">Personal Settings</string>
-    <string name="watch_trailer_1">Watch trailer</string>
-    <string name="watch_trailer_2">FREE</string>
-    <string name="rent_1">Rent By Day</string>
-    <string name="rent_2">From $1.99</string>
-    <string name="buy_1">Buy and Own</string>
-    <string name="buy_2">AT $9.99</string>
-    <string name="movie">Movie</string>
-    <string name="should_start">shouldStart</string>
-    <string name="start_position">startPosition</string>
-    <string name="search_results">Search Results</string>
--->
-    <!-- Error messages
-    <string name="video_error_media_load_timeout">Media loading timed out</string>
-    <string name="video_error_server_inaccessible">Media server was not reachable</string>
-    <string name="video_error_unknown_error">Failed to load video</string>
-    <string name="error_fragment_message">An error occurred</string>
-    <string name="dismiss_error">Dismiss</string>
-    <string name="oops">Oops</string>
-
-    <string name="hello_world">Hello world!</string>
-     -->
 </resources>

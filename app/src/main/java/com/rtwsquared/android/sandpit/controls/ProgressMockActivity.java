@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.rtwsquared.android.sandpit.R;
@@ -15,6 +16,7 @@ public class ProgressMockActivity extends TraceBaseActivity {
     private static final int SLEEP_TIME = 50;
     private int progressBarStatus = 0;
     private Handler progressBarHandler = new Handler();
+    private Thread progressBarThread = null;
 
     private int progressDialogStatus = 0;
     private Handler progressDialogHandler = new Handler();
@@ -27,43 +29,44 @@ public class ProgressMockActivity extends TraceBaseActivity {
 
         addProgressDialogButtonListener();
         addProgressBarButtonListener();
+        addProgressCancelButtonListener();
+        setEnabled(R.id.progress_mock_cancel_button_id, false);
     }
 
-    public void addProgressBarButtonListener() {
+    @Override
+    public void onBackPressed() {
+        findViewById(R.id.progress_mock_cancel_button_id).callOnClick();
+        super.onBackPressed();
+    }
 
-        findViewById(R.id.progress_dialog_bar_button_id).setOnClickListener(
+    public void addProgressCancelButtonListener() {
+
+        findViewById(R.id.progress_mock_cancel_button_id).setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
-                        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_dialog_progress_bar_id);
+                        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_mock_progress_bar_id);
 
                         //reset progress bar status
                         progressBarStatus = 0;
+                        progressBar.setProgress(progressBarStatus);
+
                         //reset file size
                         fileSize = 0;
 
-                        final Thread theThread = getThreadForProgressBar(progressBar);
+                        if (progressBarThread != null)
+                            progressBarThread.interrupt();
 
-                        theThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-                            @Override
-                            public void uncaughtException(Thread thread, Throwable ex) {
-                                traceMe("ProgressBar thread exception: " + ex.getMessage());
-                                setProgressComplete();
-                            }
-                        });
-
-                        setProgressStart();
-                        progressBar.setVisibility(View.VISIBLE);
-                        theThread.start();
+                        setProgressCancelled();
                     }
                 });
     }
 
     public void addProgressDialogButtonListener() {
 
-        findViewById(R.id.progress_dialog_button_id).setOnClickListener(
+        findViewById(R.id.progress_mock_button_id).setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
@@ -103,6 +106,38 @@ public class ProgressMockActivity extends TraceBaseActivity {
                         setProgressStart();
                         progressDialog.show();
                         theThread.start();
+                    }
+                });
+    }
+
+    public void addProgressBarButtonListener() {
+
+        findViewById(R.id.progress_mock_bar_button_id).setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_mock_progress_bar_id);
+
+                        //reset progress bar status
+                        progressBarStatus = 0;
+                        //reset file size
+                        fileSize = 0;
+
+                        progressBarThread = getThreadForProgressBar(progressBar);
+
+                        progressBarThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                            @Override
+                            public void uncaughtException(Thread thread, Throwable ex) {
+                                traceMe("ProgressBar thread exception: " + ex.getMessage());
+                                setProgressComplete();
+                            }
+                        });
+
+                        setProgressStart();
+                        progressBar.setVisibility(View.VISIBLE);
+                        progressBarThread.start();
                     }
                 });
     }
@@ -167,6 +202,7 @@ public class ProgressMockActivity extends TraceBaseActivity {
                         Thread.sleep(SLEEP_TIME);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        break;
                     }
 
                     // Update the progress bar
@@ -203,22 +239,25 @@ public class ProgressMockActivity extends TraceBaseActivity {
     // yes, these methods are trivial & similar
     // but keeping them to make consuming code easier to read
     private void setProgressCancelled() {
-        setEnabled(R.id.progress_dialog_bar_button_id, true);
-        setEnabled(R.id.progress_dialog_button_id, true);
-        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_cancelled));
+        setEnabled(R.id.progress_mock_bar_button_id, true);
+        setEnabled(R.id.progress_mock_button_id, true);
+        setEnabled(R.id.progress_mock_cancel_button_id, false);
+        setTextViewText(R.id.progress_mock_result, getString(R.string.progress_bar_demo_text_cancelled));
     }
 
     private void setProgressStart() {
         //Only allow one at a time ...
-        setEnabled(R.id.progress_dialog_button_id, false);
-        setEnabled(R.id.progress_dialog_bar_button_id, false);
-        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_started));
+        setEnabled(R.id.progress_mock_button_id, false);
+        setEnabled(R.id.progress_mock_bar_button_id, false);
+        setEnabled(R.id.progress_mock_cancel_button_id, true);
+        setTextViewText(R.id.progress_mock_result, getString(R.string.progress_bar_demo_text_started));
     }
 
     private void setProgressComplete() {
-        setEnabled(R.id.progress_dialog_button_id, true);
-        setEnabled(R.id.progress_dialog_bar_button_id, true);
-        setTextViewText(R.id.progress_dialog_result, getString(R.string.progress_bar_demo_text_finished));
+        setEnabled(R.id.progress_mock_button_id, true);
+        setEnabled(R.id.progress_mock_bar_button_id, true);
+        setEnabled(R.id.progress_mock_cancel_button_id, false);
+        setTextViewText(R.id.progress_mock_result, getString(R.string.progress_bar_demo_text_finished));
     }
 
 
