@@ -16,7 +16,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/simple_file_edit_text_id"
         android:background="#ffff"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/title"
@@ -29,10 +29,10 @@
         android:layout_height="300dp" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/simple_file_save_button_id"
         android:text="Save"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/simple_file_edit_text_id"
         android:layout_marginTop="27dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

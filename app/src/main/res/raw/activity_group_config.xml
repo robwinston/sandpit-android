@@ -1,12 +1,6 @@
 <ActivityGroupConfig>
     <PackageRoot
         name="com.rtwsquared.android.sandpit."/>
-    <!--
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Activities", "Data exchange, etc.", packageRoot + "activities"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Views", "ListViews, etc.", packageRoot + "views"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Input Controls", "Radio Buttons, Checkboxes, etc.", packageRoot + "controls"));
-        activityGroupCollection.addActivityGroup(new ActivityGroup("Media", "Media Player, etc.", packageRoot + "media"));
-    -->
     <ActivityGroup
         name="Activities"
         description="Data exchange, etc."
@@ -23,4 +17,8 @@
         name="Media"
         description="Media Player, etc."
         packageSuffix="media"/>
+    <ActivityGroup
+        name="Storage"
+        description="Preferences, Files, SQL Lite, etc."
+        packageSuffix="storage"/>
 </ActivityGroupConfig>
