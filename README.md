@@ -30,9 +30,9 @@ This poor-man's "framework" is designed to facilitate experimentation with the A
   - Overriding provided methods to augment supplied capability
   - Delegating cross-cutting concerns (e.g. Tracing) to a common class
 
-### Further Detail
+## Further Detail
 
-## "Switchboard" classes
+### "Switchboard" classes
 
 * `MainActivity` - presently, this is simply the Launchable stub used to run the `PackageDispatcherActivity`.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
 * `PackageDispatcherActivity` - reads the `activity_group_config.xml` file & creates an entry in the "switchboard template" for each package described.
