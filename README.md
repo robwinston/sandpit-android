@@ -6,7 +6,7 @@ Note: when reviewing what's been done, bear in mind that this has been written b
 
 ### Overview
 
-To facilitate experimentation with the Android SDK multiple Acivities under investigation can be run from a single Launcher Activity by employing a simple framework which has the following features:
+This framework is designed to facilitate experimentation with the Android SDK.  Multiple Activity classes under investigation can be run from a single Launcher Activity "automatically" by adopting a few simple conventions.  This is made possible by the following:
 
 * Support for dynamically constructing "Switchboard" Activites using a nested approach: 
   - Populate a "Main" screen from a list of java packages described in an XML configuration file - this would be spawned by a given Launchable Activity
@@ -14,26 +14,28 @@ To facilitate experimentation with the Android SDK multiple Acivities under inve
   - Both of these dynamically populate a "template" View with what they discover
 
 * This facility relies on a certain amount of configuration by convention -
-  - Activites are grouped by the java package they are in each of which is described in the XML configuration.  Presently there is no way to ask that Activites in multiple packages be included on a single "switchboard".  This simplifies configuration & facilitates adding additional prototypes to a given package without having to modify the configuration - i.e. thay will be picked up automatically (provide the classname ends with Activity)
-  - Presumably if deployed, these activites could be run on their own.  (The "ends with Activity" filter provides a simple mechanism for excluding "child" activities i.e. ones which rely on being spawned by a "parent" activity.)
-  - If there is no entry in XML config for a given package, it will be ignored entirely.
+  - Activites are grouped by the java package they are in - each of which is described in the XML configuration.   This simplifies configuration & facilitates adding additional prototypes to a given package without having to modify the configuration - i.e. they will be picked up automatically (provided the classname ends with Activity). (Presently there is no way to ask that Activites in multiple packages be included on a single "switchboard".)
+  - Presumably if repackaged appropriately, these activites could be run on their own.  (The "ends with Activity" filter provides a simple mechanism for excluding "child" activities i.e. ones which rely on being spawned by a "parent" activity.)
+  - If there is no entry in the XML config for a given package, it will be ignored entirely.
 
 * To augment use of the debugger during investigation, a simple, somewhat configurable & extensible, Tracer facility is also provided.  
-  - Current concrete implementations use Toast or Log for tracing, but the BaseTrace abstract class could be extended in other ways - e.g. file or SQLLite.
+  - Current concrete implementations use Toast or Log for tracing, but the BaseTrace abstract class could be extended in other ways - e.g. file or SQL Lite.
   - These are wrapped in a TraceManager with a simple API called by Activities wishing to employ it.
 
- * To localize references to View elements but reduce the cost of retrieving them, a simple View element cache is provided (and "transparently" plugged in by overriding the findViewById method).  This is undoubtedly overkill for View elements referenced only once, but it demonstates a way to provide this.  In some cases, it provides a useful alternative to instance variables - e.g. when repeatedly updating a ProgressBar.  Whether or not this is really better than instance varibles is certainly debatable, but it was a useful way to explore extension mechanisms.
+* To localize references to View elements but reduce the cost of retrieving them, a simple View element cache is provided (and "transparently" plugged in by overriding the findViewById method).  This is undoubtedly overkill for View elements referenced only once, but it demonstates a way to provide this.  In some cases, it provides a useful alternative to instance variables - e.g. when repeatedly updating a ProgressBar.  Whether or not this is really better than instance varibles is certainly debatable, but it was a useful way to explore extension mechanisms.
 
- * Although this framework has utility in its own right, it also demonstrates several techniques:
-   - Providing capabilty to all Activities through both inheritance and some composition.  At some point it probably makes sense to futher replace the use of inheritance with composition wherever possible to eliminate the downsides to be bound to a given class heirarchy (which is admittedly overly complex presently).
-   - Dynamically constructing Views from supplied data
-   - Overriding provided methods to augment supplied capability
-   - Delegating cross-cutting concerns (e.g. Tracing) to a common class
+* Although this framework has utility in its own right, it also demonstrates several techniques:
+  - Providing capabilty to all Activities through both inheritance and some composition.  Of course composition is generally better than inheritance - it's been used here largely for ease of implementation.  It will be refactored at some point.
+  - Dynamically constructing Views from supplied data
+  - Overriding provided methods to augment supplied capability
+  - Delegating cross-cutting concerns (e.g. Tracing) to a common class
 
 ### Further Detail
 
-* MainActivity - presently, this is simply the Launchable stub used to run the PackageDispatcherActivity.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
-* `PackageDispatcherActivity` - reads the activity_group_config.xml file & creates an entry in the "switchboard template" for each package described.
+## "Switchboard" classes
+
+* `MainActivity` - presently, this is simply the Launchable stub used to run the `PackageDispatcherActivity`.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
+* `PackageDispatcherActivity` - reads the `activity_group_config.xml` file & creates an entry in the "switchboard template" for each package described.
 * `ButtonDispatchActivity` or `TableDispatchActivity` - iteratively used by the `PackageDispatcherActivity`, passing it a different package name for each instance. Interrogates the package, and presents the activities for that package. See below for further info on this feature.  
   - Currently  `PackageDispatcherActivity` is hardcoded to use the `TableDispatchActivity`, but this could be made configurable
   - The Package, Button, and Table dispatchers all extend a base abstract class `DispatchBaseActivity` which provides common capabiliy.  These are augmented by several utility classes.  These could be combined/extended in other ways.
@@ -70,7 +72,7 @@ A somewhat "pluggable", albeit naive implementation of a simple tracing capabili
 * `LogTracer` - Issue trace messages using Log.d
 
 * Toaster...
-The Toaster files are helper classes for the implementation of ToastTracer tracing facility.  Uses a cache with a settable depth to limit how big the stack of Taost gets - useful when tracing statements trigger a "storm" of trace entries.  When the depth is reached, Toast entries are LIFO cancelled & discarded.  Done largely as a learning exercise to play around with Toast.
+The Toaster files are helper classes for the implementation of `ToastTracer` tracing facility.  Uses a cache with a settable depth to limit how big the stack of Taost gets - useful when tracing statements trigger a "storm" of trace entries.  When the depth is reached, Toast entries are LIFO cancelled & discarded.  Done largely as a learning exercise to play around with Toast.
 
 * `TraceBaseActivity` - A  view-less Activity class which provides tracing for lifecycle methods - other activities can extend it to pick up this, or extend `BaseActivity` to use tracing feature for other things (see other activity files for how this is done).  
 
@@ -79,9 +81,9 @@ The Toaster files are helper classes for the implementation of ToastTracer traci
 
 There's definitely room for improvement - it's more of a personal exercise to get comfortable with environment. 
 
-## BaseActivity
+* `BaseActivity`
 
-A view-less Activity class with miscellaneous utility methods.  TraceBaseActivity extends this.
+A view-less Activity class with miscellaneous utility methods.  `TraceBaseActivity` extends this.
 
 * Includes a generic method to set a View element's (e.g. Button) click behaviour to dispatch to another activity.  
 * Includes an inner class which implements the Holder pattern to cache View elements in lieu of stashing them in instance variables. Granted this is overkill for items accessed only once in the onCreate() method (but then storing them in instance variables has no benefit either), but it demonstrates the principle.  Nonetheless, for anyone accessing elements repeatedly it's a performant alternative to instance variables.
