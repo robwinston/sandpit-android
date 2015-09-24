@@ -1,16 +1,16 @@
 # sandpit-android
 Work area for ramping up on Android development.  
-Note: when reviewing what's been done, bear in mind that this has been written by someone who is brand new to Android development.  As such, it undoubtedly does dumb (or at least non-idiomatic) things in places.
+Note: if considering the use of this code elsewhere, bear in mind that it's been written by someone brand new to Android development.  As such, it undoubtedly does dumb (or at least non-idiomatic) things in places.  
 
-## Prototyping Framework
+## Prototyping Toolkit
 
 ### Overview
 
-This framework is designed to facilitate experimentation with the Android SDK.  Multiple Activity classes under investigation can be run from a single Launcher Activity "automatically" by adopting a few simple conventions.  This is made possible by the following:
+This poor-man's "framework" is designed to facilitate experimentation with the Android SDK.  Multiple Activity classes under investigation can be run from a single Launcher Activity "automatically" by adopting a few simple conventions.  This is made possible by the following:
 
 * Support for dynamically constructing "Switchboard" Activites using a nested approach: 
   - Populate a "Main" screen from a list of java packages described in an XML configuration file - this would be spawned by a given Launchable Activity
-  - For each package described in the XML,  populate a "Sub-Main" screen for the Actvities in a given java package  
+  - For each package described in the XML,  populate a "Sub-Main" screen for all classes in a given java package whose names end with `Activity`  (as such, creating a "random" class with a name ending in `Activity` is unlikely to do what one wnats).
   - Both of these dynamically populate a "template" View with what they discover
 
 * This facility relies on a certain amount of configuration by convention -
@@ -24,7 +24,7 @@ This framework is designed to facilitate experimentation with the Android SDK.  
 
 * To localize references to View elements but reduce the cost of retrieving them, a simple View element cache is provided (and "transparently" plugged in by overriding the findViewById method).  This is undoubtedly overkill for View elements referenced only once, but it demonstates a way to provide this.  In some cases, it provides a useful alternative to instance variables - e.g. when repeatedly updating a ProgressBar.  Whether or not this is really better than instance varibles is certainly debatable, but it was a useful way to explore extension mechanisms.
 
-* Although this framework has utility in its own right, it also demonstrates several techniques:
+* Although this framework may have utility in its own right, it's largely been used explore several techniques:
   - Providing capabilty to all Activities through both inheritance and some composition.  Of course composition is generally better than inheritance - it's been used here largely for ease of implementation.  It will be refactored at some point.
   - Dynamically constructing Views from supplied data
   - Overriding provided methods to augment supplied capability
@@ -36,8 +36,8 @@ This framework is designed to facilitate experimentation with the Android SDK.  
 
 * `MainActivity` - presently, this is simply the Launchable stub used to run the `PackageDispatcherActivity`.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
 * `PackageDispatcherActivity` - reads the `activity_group_config.xml` file & creates an entry in the "switchboard template" for each package described.
-* `ButtonDispatchActivity` or `TableDispatchActivity` - iteratively used by the `PackageDispatcherActivity`, passing it a different package name for each instance. Interrogates the package, and presents the activities for that package. See below for further info on this feature.  
-  - Currently  `PackageDispatcherActivity` is hardcoded to use the `TableDispatchActivity`, but this could be made configurable
+* `ButtonDispatchActivity` or `TableDispatchActivity` - iteratively used by the `PackageDispatcherActivity`, passing it a different package name for each instance. 
+  - Interrogates the package, and presents the activities for that package. See below for further info on this feature.  
   - The Package, Button, and Table dispatchers all extend a base abstract class `DispatchBaseActivity` which provides common capabiliy.  These are augmented by several utility classes.  These could be combined/extended in other ways.
 
 * Simple helper classes are used to organise the relevant info needed for the facility.  There is room for improvment here, but it gets the job done with minimal ceremony.
@@ -45,8 +45,10 @@ This framework is designed to facilitate experimentation with the Android SDK.  
   - `ActivityGroupCollection` - what it sounds like, really a placeholder for fancier stuff if needed.
 
 * The `PackageDispatchActivity` launcher: 
-  - Manually builds the ActivityGroupCollection in `getActivityGroups()` - opportunity here to be more dynamic, e.g. read the AndroidManifest.
-  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct dipatcher buttons & text for each ActivityGroup. Each of these invokes a `[Button|Table]DispatcherActivity` (with package name passed in the intent).
+  - Builds the `ActivityGroupCollection` in `getActivityGroups()` (by processing the aforementioned xml config file)
+    - TODO: alternatively read the AndroidManifest to obtain this info
+  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct "switchboard" entries for each ActivityGroup. Each of these invokes a `[Button|Table]DispatcherActivity` (with package name passed in the intent).
+    - Note: Currently hardcoded to use the `TableDispatchActivity`, but this could be made configurable
   - This method uses another helper class `IntentData` to send String-based key/value pairs to the receiving activity.  Presently, all this used for is to send the package name - but it's a placeholder for doing more - e.g. extended to support the various data types passable through intents.
   - Presently, the reciever for each button is a `[Button|Table]DispatcherActivity`, but it could be anything which understand the convention.
 
