@@ -64,7 +64,11 @@
         </activity>
         <activity
             android:name=".storage.SimpleFileActivity"
-            android:label="@string/title_activity_simple_file">
+            android:label="@string/title_activity_simple_file" >
+        </activity>
+        <activity
+            android:name=".controls.SpinnerActivity"
+            android:label="@string/title_activity_spinner" >
         </activity>
     </application>
 

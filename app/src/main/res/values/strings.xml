@@ -60,4 +60,14 @@
     <string name="progress_bar_demo_text_cancelled">Cancelled!</string>
     <string name="progress_bar_demo_text_finished">Finished</string>
 
+    <string name="simple_file_header_text">File Reader / Writer</string>
+    <string name="simple_file_open_button_text">Open</string>
+    <string name="simple_file_new_button_text">New</string>
+    <string name="simple_file_save_button_text">Save</string>
+    <string name="simple_file_save_as_button_text">Save As</string>
+    <string name="simple_file_discard_button_text">Discard</string>
+    <string name="title_activity_spinner">SpinnerActivity</string>
+
+    <string name="spinner_header_text">Fun with Spinners</string>
+
 </resources>
