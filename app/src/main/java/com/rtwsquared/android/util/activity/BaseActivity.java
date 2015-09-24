@@ -30,6 +30,9 @@ public class BaseActivity extends Activity implements TraceManager {
     }
 
 
+    // Convenience methods - simple wrappers for some API calls to make calling code somewhat less verbose
+    // (and to provide rudimentary error handling)
+
     private static List<Integer> visibilites =
             Arrays.asList(View.VISIBLE, View.INVISIBLE, View.GONE);
 
@@ -73,6 +76,19 @@ public class BaseActivity extends Activity implements TraceManager {
         findViewById(id).setEnabled(state);
     }
 
+    // Misc
+    protected Class classForName(String className)
+    {
+        Class theClass =  null;
+
+        try {
+            theClass = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            traceMe(String.format("Failed to find Class for name: %s - %s", className, e.getMessage()));
+            return theClass;
+        }
+        return theClass;
+    }
 
     // View element caching section
     protected void traceCacheStats()

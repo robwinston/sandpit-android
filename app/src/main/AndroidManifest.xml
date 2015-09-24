@@ -31,8 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rtwsquared.android.util.activity.JarDispatcherActivity"
-            android:label="@string/title_activity_jar_dispatcher" >
+            android:name="com.rtwsquared.android.util.activity.PackageDispatcherActivity"
+            android:label="@string/title_activity_package_dispatcher" >
         </activity>
         <activity
             android:name="com.rtwsquared.android.util.activity.ButtonDispatcherActivity"

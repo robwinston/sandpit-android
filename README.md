@@ -1,81 +1,85 @@
 # sandpit-android
-Work area for ramping up on Android development.
+Work area for ramping up on Android development.  
+Note: when reviewing what's been done, bear in mind that this has been written by someone who is brand new to Android development.  As such, it undoubtedly does dumb (or at least non-idiomatic) things in places.
 
-Has a simple framework for testing activities:
-* Utility Views which can look at package inventory & contents and build nested "launcher" Activites for them.
-* A simple, somewhat configurable, trace facility which can use Toast and/or Log for tracing.
+## Prototyping Framework
 
+### Overview
 
+To facilitate experimentation with the Android SDK multiple Acivities under investigation can be run from a single Launcher Activity by employing a simple framework which has the following features:
 
-## Base files
+* Support for dynamically constructing "Switchboard" Activites using a nested approach: 
+  - Populate a "Main" screen from a list of java packages described in an XML configuration file - this would be spawned by a given Launchable Activity
+  - For each package described in the XML,  populate a "Sub-Main" screen for the Actvities in a given java package  
+  - Both of these dynamically populate a "template" View with what they discover
 
-* MainActivity - "top level" launcher, a collection of pointers to DispatchButtonsActivity, one for each java package listed in its configuration (this is currently "baked" into the code - this will be changed at some point). 
-* DispatchButtonsActivity - reused by passing it a different package name for each instance. Presents the activities for that package. See below for further info on this feature.   
+* This facility relies on a certain amount of configuration by convention -
+  - Activites are grouped by the java package they are in each of which is described in the XML configuration.  Presently there is no way to ask that Activites in multiple packages be included on a single "switchboard".  This simplifies configuration & facilitates adding additional prototypes to a given package without having to modify the configuration - i.e. thay will be picked up automatically (provide the classname ends with Activity)
+  - Presumably if deployed, these activites could be run on their own.  (The "ends with Activity" filter provides a simple mechanism for excluding "child" activities i.e. ones which rely on being spawned by a "parent" activity.)
+  - If there is no entry in XML config for a given package, it will be ignored entirely.
 
-### Dynamic Launching 
-* Support for dynamically constructing "Activity Launcher" Activites using two techniques: 
-  - Populate a "Main" Activity from a list of java packages
-  - Populate a "Sub-Main" Activity for the Actvities in a given java package  
+* To augment use of the debugger during investigation, a simple, somewhat configurable & extensible, Tracer facility is also provided.  
+  - Current concrete implementations use Toast or Log for tracing, but the BaseTrace abstract class could be extended in other ways - e.g. file or SQLLite.
+  - These are wrapped in a TraceManager with a simple API called by Activities wishing to employ it.
 
-This facility relies on a certain amount of configuration by convention -
-  - Activites are grouped by the java package they are in - in this case, there is a java package for each "capability" under investigation
-  - "Launchable" Activity classes are presumed to end with the word Activity - anything else is ignored.  The provides a simple mechanism for excluding "child" activities.
+ * To localize references to View elements but reduce the cost of retrieving them, a simple View element cache is provided (and "transparently" plugged in by overriding the findViewById method).  This is undoubtedly overkill for View elements referenced only once, but it demonstates a way to provide this.  In some cases, it provides a useful alternative to instance variables - e.g. when repeatedly updating a ProgressBar.  Whether or not this is really better than instance varibles is certainly debatable, but it was a useful way to explore extension mechanisms.
+
+ * Although this framework has utility in its own right, it also demonstrates several techniques:
+   - Providing capabilty to all Activities through both inheritance and some composition.  At some point it probably makes sense to futher replace the use of inheritance with composition wherever possible to eliminate the downsides to be bound to a given class heirarchy (which is admittedly overly complex presently).
+   - Dynamically constructing Views from supplied data
+   - Overriding provided methods to augment supplied capability
+   - Delegating cross-cutting concerns (e.g. Tracing) to a common class
+
+### Further Detail
+
+* MainActivity - presently, this is simply the Launchable stub used to run the PackageDispatcherActivity.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
+* `PackageDispatcherActivity` - reads the activity_group_config.xml file & creates an entry in the "switchboard template" for each package described.
+* `ButtonDispatchActivity` or `TableDispatchActivity` - iteratively used by the `PackageDispatcherActivity`, passing it a different package name for each instance. Interrogates the package, and presents the activities for that package. See below for further info on this feature.  
+  - Currently  `PackageDispatcherActivity` is hardcoded to use the `TableDispatchActivity`, but this could be made configurable
+  - The Package, Button, and Table dispatchers all extend a base abstract class `DispatchBaseActivity` which provides common capabiliy.  These are augmented by several utility classes.  These could be combined/extended in other ways.
 
 * Simple helper classes are used to organise the relevant info needed for the facility.  There is room for improvment here, but it gets the job done with minimal ceremony.
-  - ActivityGroup - used to describe a package: Name, Description, PackageName.
-  - ActivityGroupCollection - what it sounds like, really a placeholder for fancier stuff if needed.
+  - `ActivityGroup` - used to describe a package: Name, Description, PackageName.
+  - `ActivityGroupCollection` - what it sounds like, really a placeholder for fancier stuff if needed.
 
-* The `MainActivity` launcher: 
+* The `PackageDispatchActivity` launcher: 
   - Manually builds the ActivityGroupCollection in `getActivityGroups()` - opportunity here to be more dynamic, e.g. read the AndroidManifest.
-  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct dipatcher buttons & text for each ActivityGroup. Each of these invokes a `ButtonDispatcherActivity` (with package name passed in the intent).
+  - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct dipatcher buttons & text for each ActivityGroup. Each of these invokes a `[Button|Table]DispatcherActivity` (with package name passed in the intent).
   - This method uses another helper class `IntentData` to send String-based key/value pairs to the receiving activity.  Presently, all this used for is to send the package name - but it's a placeholder for doing more - e.g. extended to support the various data types passable through intents.
-  - Presently, the reciever for each button is a `ButtonDispatcherActivity`, but it could be anything which understand the convention.
+  - Presently, the reciever for each button is a `[Button|Table]DispatcherActivity`, but it could be anything which understand the convention.
 
-* The  `ButtonDispatcherActivity` launcher:
+* The  `[Button|Table]DispatcherActivity` launcher:
   - Gets the package name passed to it.
-  - Uses the ClassFinder utility class to find all of the classes in this package whose names end with Activity.
-  - Thanks to the following for providing almost all of of what it took to do this  - 
+  - Uses the `ClassFinder` utility class to find all of the classes in this package whose classnames end with `Activity`.
+  - Note: Credit to the following for providing much of what it took to do this  - 
     - [Find all classes in a package in Android](http://stackoverflow.com/questions/15446036/find-all-classes-in-a-package-in-android)
     - [How to get all classes names in a package?](http://stackoverflow.com/questions/15519626/how-to-get-all-classes-names-in-a-package)
-  - Uses code similar to that in the MainActivity class (clearly a refactoring opportunity!) to build an entry for each Activity.
-
-* MainActivity & ButtonDispatcherActivity extend DispatchBaseActivity which provides common functionality.
+ 
+* `PackageDispatchActivity` & `[Button|Table]DispatcherActivity` all extend `DispatchBaseActivity` which provides common functionality.
 * As suggested, it should be possible to develop other "Dispatch" Activities which use different navigation (e.g. menus), but re-use the core capability.  This would likely surface further refactoring  opportunities.
 
 ## Tracing
 A somewhat "pluggable", albeit naive implementation of a simple tracing capability.
 
-### TraceManager
-Manage a collection of one or more Tracers to support sending trace entries to multiple destinations
+* `TraceManager` - Manage a collection of one or more Tracers to support sending trace entries to multiple destinations.  
+  - Has a first-cut implementation of a run-time configuration capability and convenience methods to selectively turn tracing on/off other than at the activity setup level but these haven't been exercised  yet.
 
-### TracerBase
-Core functionality for tracing - format mssage with time, parent class, calling method. 
+* `TracerBase` - Core functionality for tracing - format message with time (optional - LogTrace turns it off because it's redundant), parent class, calling method. 
+  - Note: "stack depth" is hard coded, so it will provide misleading info if used in a different context. Where this is done is commented in the code and is easily modified.  May in future make this genuinely configurable.
+* `ToastTracer` - Issue trace messages using Toast
+* `LogTracer` - Issue trace messages using Log.d
 
-Note: "stack depth" is hard coded, so it will provide misleading info if used in a different context. Where this is done is commented in the code and is easily modified.  May in future make this genuinely configurable.
+* Toaster...
+The Toaster files are helper classes for the implementation of ToastTracer tracing facility.  Uses a cache with a settable depth to limit how big the stack of Taost gets - useful when tracing statements trigger a "storm" of trace entries.  When the depth is reached, Toast entries are LIFO cancelled & discarded.  Done largely as a learning exercise to play around with Toast.
 
-### ToastTracer
-Issue trace messages using Toast
-
-### LogTracer
-Issue trace messages using Log.d
-
-### Toaster...
-The Toaster files are helper classes for a novice's implementation of a Toast-based tracing facility.  Uses a cache with a settable depth to limit how big the stack of Taost gets - useful when tracing statements trigger a "storm" of trace entries.  When the depth is reached, Toast entries are LIFO cancelled & discarded.  Done largely as a learning exercise to play around with Toast.
-
-### TraceBaseActivity
-A  view-less Activity class which provides tracing for lifecycle methods - other activities can extend it to use tracing feature (see other activity files for how this is done).  
+* `TraceBaseActivity` - A  view-less Activity class which provides tracing for lifecycle methods - other activities can extend it to pick up this, or extend `BaseActivity` to use tracing feature for other things (see other activity files for how this is done).  
 
 * The `setupTrace(AnActivityClass.class.getSimpleName())` in the parent activty's `onCreate()` is what turns on tracing for that activity. 
-* An activity may extend TraceActivity, but control whether or not tracing actually takes place by whether or not they invoke setupTrace
+* An activity may extend `TraceBaseActivity`, but control whether or not tracing actually takes place by whether or not they invoke setupTrace
 
-There is room for improvement:
+There's definitely room for improvement - it's more of a personal exercise to get comfortable with environment. 
 
-* Decouple it from class hierarchy - right now TraceActivity extends Activity, so other base classes are unvailable
-* Selectively turn tracing on/off other than at the activity setup level there's some scaffolding for this, but it hasn't been fleshed out yet.
-
-But then, there's likely something far better out there - this is more of a personal exercise to get comfortable with environment & to revive rusty Java skills. 
-
-### BaseActivity
+## BaseActivity
 
 A view-less Activity class with miscellaneous utility methods.  TraceBaseActivity extends this.
 
@@ -84,11 +88,13 @@ A view-less Activity class with miscellaneous utility methods.  TraceBaseActivit
 * This feature is implemented by overriding the `findViewById(int id)` method, so it is transparent to the consumer. 
  
 
-## Activities
+## "Prototype" Activities
 
 The other activities are explorations of various capabilites in the SDK.
-### ParentActivity / ChildActivity1
 
-* Simple impelemtation of exchanging data between Activities.  It uses EditText/TextView in both to demonstrate the exchange (and uses the TraceActivity as well to show what's coming and going). 
+### ParentActivity / ChildActivity1
+* Simple impelentation of exchanging data between Activities.  It uses EditText/TextView in both to demonstrate the exchange (and uses the TraceActivity as well to show what's coming and going). 
 * ChildActivity1 doesn't appear on the launcher panel because its classname doesn't end with "Activity".
 
+### ProgressMockActivity / ProgressURLActivity
+* Investigation of ProgressBar & ProgressDialog, running background tasks, posting View actions to UI thread. 

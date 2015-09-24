@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.rtwsquared.android.util.activity.DispatchBaseActivity;
-import com.rtwsquared.android.util.activity.JarDispatcherActivity;
+import com.rtwsquared.android.util.activity.PackageDispatcherActivity;
 
 public class MainActivity extends DispatchBaseActivity {
 
@@ -15,6 +15,6 @@ public class MainActivity extends DispatchBaseActivity {
         setupTrace(MainActivity.class.getSimpleName());
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.main_parent_layout);
-        ll.addView(getLinearLayoutForActivityClass(JarDispatcherActivity.class));
+        ll.addView(getLinearLayoutForActivityClass(PackageDispatcherActivity.class));
     }
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Xml;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.rtwsquared.android.sandpit.R;
@@ -18,16 +20,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class JarDispatcherActivity extends DispatchBaseActivity {
+public class PackageDispatcherActivity extends DispatchBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jar_dispatcher);
-        setupTrace(JarDispatcherActivity.class.getSimpleName());
+        setContentView(R.layout.activity_package_dispatcher);
+        setupTrace(PackageDispatcherActivity.class.getSimpleName());
 
-        addDispatcherLayout((LinearLayout) findViewById(R.id.jar_dispatch_parent_layout));
+        addDispatcherLayout((LinearLayout) findViewById(R.id.package_dispatch_parent_layout));
+        addActivityDispatcherOptions((RadioGroup) findViewById(R.id.package_dispatch_radio_group_id));
     }
+
+    private void addActivityDispatcherOptions(RadioGroup parentLayout) {
+
+
+
+
+    }
+
+    // placeholder to permit doing this some other way ...
+    private String[] getDispatcherClassesFromConfig() {
+        return getResources().getStringArray(R.array.progress_bar_url_image_urls);
+    }
+
+
 
     private void addDispatcherLayout(LinearLayout parentLayout) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -35,6 +52,7 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
 
         ActivityGroupCollection activityGroupCollection = getActivityGroupsFromXml(R.raw.activity_group_config);
         ((TextView) findViewById(R.id.jar_dispatch_debug_text)).setText(activityGroupCollection.size() + " ActivityGroups");
+
 
         for (ActivityGroup activityGroup : activityGroupCollection) {
 
@@ -51,7 +69,8 @@ public class JarDispatcherActivity extends DispatchBaseActivity {
 
             List<IntentData> dataToSend = new ArrayList<>();
             dataToSend.add(new IntentData(getString(R.string.dispatch_package_name_key), activityGroup.getPackageName()));
-            setNewActivityOnClickListener(button, TableDispatcherActivity.class, dataToSend);
+            //setNewActivityOnClickListener(button, TableDispatcherActivity.class, dataToSend);
+            setNewActivityOnClickListener(button, classForName("com.rtwsquared.android.util.activity.TableDispatcherActivity"), dataToSend);
             grandchildLayout1.addView(button);
 
             TextView name1 = new TextView(this);

@@ -6,10 +6,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.rtwsquared.android.util.activity.JarDispatcherActivity">
+    tools:context="com.rtwsquared.android.util.activity.PackageDispatcherActivity">
 
     <LinearLayout
-        android:id="@+id/jar_dispatch_parent_layout"
+        android:id="@+id/package_dispatch_parent_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -19,6 +19,14 @@
 
     </LinearLayout>
 
+    <RadioGroup
+        android:id="@+id/package_dispatch_radio_group_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/package_dispatch_parent_layout"
+        >
+    </RadioGroup>
     <TextView
         android:id="@+id/jar_dispatch_debug_text"
         android:layout_width="wrap_content"
