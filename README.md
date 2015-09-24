@@ -62,35 +62,37 @@ This poor-man's "framework" is designed to facilitate experimentation with the A
 * `PackageDispatchActivity` & `[Button|Table]DispatcherActivity` all extend `DispatchBaseActivity` which provides common functionality.
 * As suggested, it should be possible to develop other "Dispatch" Activities which use different navigation (e.g. menus), but re-use the core capability.  This would likely surface further refactoring  opportunities.
 
-## Tracing
+### Base Activity classes
+
+* `TraceBaseActivity` - A  view-less Activity class which provides tracing for lifecycle methods - other activities can extend it to pick up this, or extend `BaseActivity` to use tracing feature for other things (see other activity files for how this is done).  
+
+  - The `setupTrace(AnActivityClass.class.getSimpleName())` in the parent activty's `onCreate()` is what turns on tracing for that activity. 
+  - An activity may extend `TraceBaseActivity`, but control whether or not tracing actually takes place by whether or not they invoke setupTrace
+
+* `BaseActivity`
+
+  - A view-less Activity class with miscellaneous utility methods.  `TraceBaseActivity` extends this.
+  - Includes a generic method to set a View element's (e.g. Button) click behaviour to dispatch to another activity.  
+  - Includes an inner class which implements the Holder pattern to cache View elements in lieu of stashing them in instance variables. Granted this is overkill for items accessed only once in the onCreate() method (but then storing them in instance variables has no benefit either), but it demonstrates the principle.  Nonetheless, for anyone accessing elements repeatedly it's a performant alternative to instance variables.
+    - This feature is implemented by overriding the `findViewById(int id)` method, so it is transparent to the consumer. 
+
+
+### Tracing
 A somewhat "pluggable", albeit naive implementation of a simple tracing capability.
 
 * `TraceManager` - Manage a collection of one or more Tracers to support sending trace entries to multiple destinations.  
   - Has a first-cut implementation of a run-time configuration capability and convenience methods to selectively turn tracing on/off other than at the activity setup level but these haven't been exercised  yet.
 
-* `TracerBase` - Core functionality for tracing - format message with time (optional - LogTrace turns it off because it's redundant), parent class, calling method. 
-  - Note: "stack depth" is hard coded, so it will provide misleading info if used in a different context. Where this is done is commented in the code and is easily modified.  May in future make this genuinely configurable.
+* `TracerBase` - Core functionality for tracing - format message with time, parent class, and calling method. 
+  - Note: "stack depth" is hard coded & used to skip over intermediate helper methods, so it will provide misleading info if used in a different context. Where this is done is commented in the code and is easily modified.  May in future make this genuinely configurable.
+  - Note: time is optional - LogTrace turns it off because it's redundant
 * `ToastTracer` - Issue trace messages using Toast
 * `LogTracer` - Issue trace messages using Log.d
 
 * Toaster...
 The Toaster files are helper classes for the implementation of `ToastTracer` tracing facility.  Uses a cache with a settable depth to limit how big the stack of Taost gets - useful when tracing statements trigger a "storm" of trace entries.  When the depth is reached, Toast entries are LIFO cancelled & discarded.  Done largely as a learning exercise to play around with Toast.
 
-* `TraceBaseActivity` - A  view-less Activity class which provides tracing for lifecycle methods - other activities can extend it to pick up this, or extend `BaseActivity` to use tracing feature for other things (see other activity files for how this is done).  
 
-* The `setupTrace(AnActivityClass.class.getSimpleName())` in the parent activty's `onCreate()` is what turns on tracing for that activity. 
-* An activity may extend `TraceBaseActivity`, but control whether or not tracing actually takes place by whether or not they invoke setupTrace
-
-There's definitely room for improvement - it's more of a personal exercise to get comfortable with environment. 
-
-* `BaseActivity`
-
-A view-less Activity class with miscellaneous utility methods.  `TraceBaseActivity` extends this.
-
-* Includes a generic method to set a View element's (e.g. Button) click behaviour to dispatch to another activity.  
-* Includes an inner class which implements the Holder pattern to cache View elements in lieu of stashing them in instance variables. Granted this is overkill for items accessed only once in the onCreate() method (but then storing them in instance variables has no benefit either), but it demonstrates the principle.  Nonetheless, for anyone accessing elements repeatedly it's a performant alternative to instance variables.
-* This feature is implemented by overriding the `findViewById(int id)` method, so it is transparent to the consumer. 
- 
 
 ## "Prototype" Activities
 
