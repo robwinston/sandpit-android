@@ -34,7 +34,9 @@ This poor-man's "framework" is designed to facilitate experimentation with the A
 
 ### "Switchboard" classes
 
-* `MainActivity` - presently, this is simply the Launchable stub used to run the `PackageDispatcherActivity`.  A Trace configuration capability is envisioned - when implemented, it could be exposed here.
+* `MainActivity` - presently, this is simply the Launchable stub used to run the `PackageDispatcherActivity`. 
+  - Radio buttons to select desired DispatchActivity layout (Button or Table).  Choices are in a string-array so are configurable.
+  - Similarily, a Trace configuration capability is envisioned - when implemented, it could be exposed here.
 * `PackageDispatcherActivity` - reads the `activity_group_config.xml` file & creates an entry in the "switchboard template" for each package described.
 * `ButtonDispatchActivity` or `TableDispatchActivity` - iteratively used by the `PackageDispatcherActivity`, passing it a different package name for each instance. 
   - Interrogates the package, and presents the activities for that package. See below for further info on this feature.  
@@ -48,7 +50,6 @@ This poor-man's "framework" is designed to facilitate experimentation with the A
   - Builds the `ActivityGroupCollection` in `getActivityGroups()` (by processing the aforementioned xml config file)
     - TODO: alternatively read the AndroidManifest to obtain this info
   - Processes the collection in `addDispatcherLayout(LinearLayout parentLayout)` to construct "switchboard" entries for each ActivityGroup. Each of these invokes a `[Button|Table]DispatcherActivity` (with package name passed in the intent).
-    - Note: Currently hardcoded to use the `TableDispatchActivity`, but this could be made configurable
   - This method uses another helper class `IntentData` to send String-based key/value pairs to the receiving activity.  Presently, all this used for is to send the package name - but it's a placeholder for doing more - e.g. extended to support the various data types passable through intents.
   - Presently, the reciever for each button is a `[Button|Table]DispatcherActivity`, but it could be anything which understand the convention.
 
