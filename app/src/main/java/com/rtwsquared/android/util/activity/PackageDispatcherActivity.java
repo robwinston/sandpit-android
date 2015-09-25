@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -28,22 +29,8 @@ public class PackageDispatcherActivity extends DispatchBaseActivity {
         setContentView(R.layout.activity_package_dispatcher);
         setupTrace(PackageDispatcherActivity.class.getSimpleName());
 
-        addDispatcherLayout((LinearLayout) findViewById(R.id.package_dispatch_parent_layout));
-        addActivityDispatcherOptions((RadioGroup) findViewById(R.id.package_dispatch_radio_group_id));
+        addDispatcherLayout((LinearLayout) findViewById(R.id.package_dispatch_buttons_parent_layout));
     }
-
-    private void addActivityDispatcherOptions(RadioGroup parentLayout) {
-
-
-
-
-    }
-
-    // placeholder to permit doing this some other way ...
-    private String[] getDispatcherClassesFromConfig() {
-        return getResources().getStringArray(R.array.progress_bar_url_image_urls);
-    }
-
 
 
     private void addDispatcherLayout(LinearLayout parentLayout) {
@@ -52,6 +39,8 @@ public class PackageDispatcherActivity extends DispatchBaseActivity {
 
         ActivityGroupCollection activityGroupCollection = getActivityGroupsFromXml(R.raw.activity_group_config);
         ((TextView) findViewById(R.id.jar_dispatch_debug_text)).setText(activityGroupCollection.size() + " ActivityGroups");
+
+        Class dispatcherClass = getDispatcherClass();
 
 
         for (ActivityGroup activityGroup : activityGroupCollection) {
@@ -69,8 +58,7 @@ public class PackageDispatcherActivity extends DispatchBaseActivity {
 
             List<IntentData> dataToSend = new ArrayList<>();
             dataToSend.add(new IntentData(getString(R.string.dispatch_package_name_key), activityGroup.getPackageName()));
-            //setNewActivityOnClickListener(button, TableDispatcherActivity.class, dataToSend);
-            setNewActivityOnClickListener(button, classForName("com.rtwsquared.android.util.activity.TableDispatcherActivity"), dataToSend);
+            setNewActivityOnClickListener(button, dispatcherClass, dataToSend);
             grandchildLayout1.addView(button);
 
             TextView name1 = new TextView(this);
@@ -88,6 +76,12 @@ public class PackageDispatcherActivity extends DispatchBaseActivity {
             parentLayout.addView(childLayout);
         }
 
+    }
+
+    private Class getDispatcherClass() {
+        Bundle extras = getIntent().getExtras();
+        String className = extras.getString(getString(R.string.dispatch_classname_key));
+        return classForName(className);
     }
 
     private ActivityGroupCollection getActivityGroupsFromXml(int resId) {

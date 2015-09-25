@@ -42,36 +42,68 @@ public class DispatchBaseActivity extends TraceBaseActivity {
 
 
     @NonNull
+    protected LinearLayout getLinearLayoutForActivityClass(Class aClass, final List<IntentData> dataToSend) {
+
+        final LinearLayout.LayoutParams layoutParams = getLayoutParams();
+
+        LinearLayout ll = getLinearLayout();
+        final Button button = getButton(layoutParams);
+        // Set click listener for button
+        setNewActivityOnClickListener(button, aClass, dataToSend);
+        ll.addView(button);
+
+        TextView name1 = getTextView(aClass);
+        ll.addView(name1);
+        return ll;
+    }
+    @NonNull
     protected LinearLayout getLinearLayoutForActivityClass(Class aClass) {
-        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        final LinearLayout.LayoutParams layoutParams = getLayoutParams();
+
+        LinearLayout ll = getLinearLayout();
+        final Button button = getButton(layoutParams);
+        // Set click listener for button
+        setNewActivityOnClickListener(button, aClass);
+        ll.addView(button);
+
+        TextView name1 = getTextView(aClass);
+        ll.addView(name1);
+        return ll;
+    }
+
+    @NonNull
+    protected LinearLayout.LayoutParams getLayoutParams() {
+        return new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    }
+
+    @NonNull
+    private LinearLayout getLinearLayout() {
         LinearLayout ll = new LinearLayout(this);
         ll.setOrientation(LinearLayout.HORIZONTAL);
         ll.setPadding(5, 10, 5, 10);
+        return ll;
+    }
 
-
+    @NonNull
+    private Button getButton(LinearLayout.LayoutParams layoutParams) {
         // Create Launcher Button
         final Button button = new Button(this);
         button.setId(getViewId());
         button.setText("Launch");
         // set the layoutParams on the button
         button.setLayoutParams(layoutParams);
-
-        // Set click listener for button
-        setNewActivityOnClickListener(button, aClass);
-
-        ll.addView(button);
-
+        return button;
+    }
+    @NonNull
+    private TextView getTextView(Class aClass) {
         // Create Launcher text using Activity class name
         TextView name1 = new TextView(this);
         name1.setText(String.format("%s", aClass.getSimpleName()));
-        ll.addView(name1);
-        return ll;
+        return name1;
     }
 
-    protected <T> void setNewActivityOnClickListener(int viewId, final Class<T> aClass) {
-        setNewActivityOnClickListener(findViewById(viewId), aClass);
-    }
 
     protected <T> void setNewActivityOnClickListener(View view, final Class<T> aClass) {
         view.setOnClickListener(new View.OnClickListener() {

@@ -5,8 +5,9 @@
 
     <string name="title_activity_button_dispatcher">Activity (Button) Dispatcher</string>
     <string name="title_activity_table_dispatcher">Activity (Table) Dispatcher</string>
-    <string name="title_activity_package_dispatcher">Package (Button) Dispatcher</string>
+    <string name="title_activity_package_dispatcher">Package Dispatcher</string>
 
+    <string name="main_run_button_text">Continue</string>
     <string name="dispatch_package_name_key">PackageName</string>
     <string name="dispatch_goto_group_button_text">Go To</string>
     <string name="dispatch_package_root">"com.rtwsquared.android.sandpit."</string>
@@ -14,6 +15,7 @@
         <item>com.rtwsquared.android.util.activity.TableDispatcherActivity</item>
         <item>com.rtwsquared.android.util.activity.ButtonDispatcherActivity</item>
     </string-array>
+    <string name="dispatch_classname_key">DispatcherClassName</string>
 
     <string name="title_activity_sound">Sound Activity</string>
     <string name="title_activity_progress_url_download">Progress URL Download Activity</string>

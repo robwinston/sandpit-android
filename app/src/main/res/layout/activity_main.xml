@@ -13,15 +13,43 @@
         android:orientation="vertical"
         android:padding="15sp"
         >
-
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/package_dispatch_radio_group_parent_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/main_parent_layout"
+        android:padding="15sp"
+        >
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/main_continue_parent_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentBottom="true"
+        android:padding="15sp"
+        >
+    <Button
+        android:id="@+id/main_run_button_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_run_button_text"
+        />
     <TextView
         android:id="@+id/main_debug_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
         />
+    </LinearLayout>
 </RelativeLayout>

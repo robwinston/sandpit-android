@@ -9,24 +9,15 @@
     tools:context="com.rtwsquared.android.util.activity.PackageDispatcherActivity">
 
     <LinearLayout
-        android:id="@+id/package_dispatch_parent_layout"
+        android:id="@+id/package_dispatch_buttons_parent_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         android:padding="15sp"
         >
-
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/package_dispatch_radio_group_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/package_dispatch_parent_layout"
-        >
-    </RadioGroup>
     <TextView
         android:id="@+id/jar_dispatch_debug_text"
         android:layout_width="wrap_content"

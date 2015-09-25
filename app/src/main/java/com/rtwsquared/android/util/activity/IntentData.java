@@ -10,7 +10,7 @@ package com.rtwsquared.android.util.activity;
 public class IntentData {
 
     private final String key;
-    private final String data;
+    private String data;
 
     public IntentData(String key, String data)
     {
@@ -18,11 +18,13 @@ public class IntentData {
         this.data = data;
     }
 
-    public String getKey() {
-        return key;
-    }
-
+    public String getKey() { return key;}
     public String getData() {
         return data;
+    }
+
+    public void setData(String data)
+    {
+        this.data = data;
     }
 }
