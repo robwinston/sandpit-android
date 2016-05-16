@@ -25,3 +25,11 @@ proguard/
 
 # Log Files
 *.log
+
+# intellij
+.idea/
+*.iml
+
+# tmp
+clip*
+app/src/main/res/raw/brown_eyed_girl.mp3
